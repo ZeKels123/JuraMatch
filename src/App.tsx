@@ -329,6 +329,17 @@ function Game({ state, token, act, onLeave, onRules }: {
   const [notice, setNotice] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const [logOpen, setLogOpen] = useState(false)
+  const handRef = useRef<HTMLElement>(null)
+  const [handH, setHandH] = useState(180)
+
+  // Hauteur de la main : la carte agrandie s'affiche juste au-dessus
+  useEffect(() => {
+    const el = handRef.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setHandH(el.offsetHeight))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   const me = state.me
   const myTurn = state.status === 'playing' && state.current_seat === me.seat && me.active
@@ -345,6 +356,12 @@ function Game({ state, token, act, onLeave, onRules }: {
   }, [myTurn])
 
   useEffect(() => { if (selected && !me.hand.includes(selected)) setSelected(null) }, [me.hand, selected])
+  useEffect(() => {
+    if (!selected) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setSelected(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selected])
   useEffect(() => { if (!notice) return; const t = window.setTimeout(() => setNotice(null), 4500); return () => window.clearTimeout(t) }, [notice])
 
   const play = async (id: string) => {
@@ -384,7 +401,7 @@ function Game({ state, token, act, onLeave, onRules }: {
   else status = `${current?.name ?? '…'} réfléchit…`
 
   return (
-    <main className={`game ${myTurn ? 'is-my-turn' : ''}`}>
+    <main className={`game ${myTurn ? 'is-my-turn' : ''}`} style={{ ['--hand-h' as string]: `${handH}px` }}>
       <header className="bar">
         <span className="bar-logo">JuraMatch</span>
         <span className="bar-code">Partie {state.code}</span>
@@ -461,9 +478,6 @@ function Game({ state, token, act, onLeave, onRules }: {
         )}
         {myTurn && state.phase === 'play' && (
           <div className="turn-buttons">
-            {sel && playable.has(sel.id) && (
-              <button className="btn btn-primary" disabled={busy} onClick={() => play(sel.id)}>Poser {sel.name}</button>
-            )}
             <button className="btn" disabled={busy} onClick={draw}>{deckEmpty ? 'Passer (pioche vide)' : 'Piocher'}</button>
           </div>
         )}
@@ -471,22 +485,57 @@ function Game({ state, token, act, onLeave, onRules }: {
       </section>
 
       {sel && selReasons && (
-        <p className="why">
-          {sel.kind === 'special'
-            ? <>Interdiction : tant qu’elle est sur la pile, plus personne ne peut poser une commune avec le symbole <strong>{iconLabel(sel.icons[0])}</strong>.</>
-            : selReasons.blockedBy
-              ? <>{sel.name} est bloquée : le symbole <strong>{iconLabel(selReasons.blockedBy)}</strong> est interdit.</>
-              : selReasons.ok
-                ? <>{sel.name} va sur {top?.name} :{' '}
-                    {selReasons.district && <span className="chip">même district</span>}
-                    {selReasons.icons.map((i) => <span key={i} className="chip"><img src={iconImg(i)} alt="" />{iconLabel(i)}</span>)}
-                  </>
-                : <>{sel.name} ne partage ni le district ni un symbole avec {top?.name}.</>}
-          <button className="link" onClick={() => setZoom(sel.id)}>Voir la carte</button>
-        </p>
+        <div className="focus" role="dialog" aria-label={`Carte ${sel.name}`}>
+          <button
+            key={sel.id}
+            className="focus-card"
+            onClick={() => { if (playable.has(sel.id) && !busy) void play(sel.id) }}
+            aria-label={playable.has(sel.id) ? `Poser ${sel.name}` : sel.name}
+            style={{ cursor: playable.has(sel.id) ? 'pointer' : 'default' }}
+          >
+            <img className="card-img" src={sel.img} alt={sel.name} />
+          </button>
+          <div className="focus-text">
+            <h2>{sel.name}</h2>
+            {top && sel.kind === 'commune' && (
+              <div className="focus-vs">
+                <img src={top.img} alt="" />
+                <span>Sur la défausse : <strong>{top.name}</strong><br /><small>District de {top.district}</small></span>
+              </div>
+            )}
+            <p>
+              {sel.kind === 'special'
+                ? <>Tant qu’elle est sur la pile spéciale, plus personne ne peut poser une commune avec le symbole <strong>{iconLabel(sel.icons[0])}</strong>.</>
+                : selReasons.blockedBy
+                  ? <>Bloquée : le symbole <strong>{iconLabel(selReasons.blockedBy)}</strong> est interdit.</>
+                  : selReasons.ok
+                    ? <>Elle peut être posée. En commun :</>
+                    : <>Ne partage ni le district ni un symbole avec {top?.name}.</>}
+            </p>
+            {sel.kind === 'commune' && !selReasons.blockedBy && selReasons.ok && (
+              <div className="chips">
+                {selReasons.district && <span className="chip">même district</span>}
+                {selReasons.icons.map((i) => <span key={i} className="chip"><img src={iconImg(i)} alt="" />{iconLabel(i)}</span>)}
+              </div>
+            )}
+            {!myTurn && <p className="muted">Ce n’est pas ton tour.</p>}
+            {myTurn && state.phase === 'drawn' && sel.id !== state.drawn_card && (
+              <p className="muted">Après avoir pioché, seule la carte piochée peut être posée.</p>
+            )}
+            <div className="focus-actions">
+              {playable.has(sel.id) && (
+                <button className="btn btn-primary" disabled={busy} onClick={() => play(sel.id)}>Poser {sel.name}</button>
+              )}
+              {myTurn && state.phase === 'drawn' && sel.id === state.drawn_card && (
+                <button className="btn" disabled={busy} onClick={keep}>Garder et finir mon tour</button>
+              )}
+              <button className="btn btn-ghost-dark" onClick={() => setSelected(null)}>Fermer</button>
+            </div>
+          </div>
+        </div>
       )}
 
-      <section className="hand" aria-label="Ta main">
+      <section className="hand" aria-label="Ta main" ref={handRef}>
         <div className="hand-row">
           {me.hand.map((id) => {
             const c = CARDS[id]
@@ -500,6 +549,7 @@ function Game({ state, token, act, onLeave, onRules }: {
                   // 1er clic : sélectionne la carte ; 2e clic sur une carte jouable : la pose
                   if (isSel && can && !busy) void play(id)
                   else setSelected(isSel ? null : id)
+                  setZoom(null)
                 }}
                 aria-pressed={isSel}
                 aria-label={`${c?.name}${can ? ', jouable' : ''}`}
@@ -509,7 +559,7 @@ function Game({ state, token, act, onLeave, onRules }: {
             )
           })}
         </div>
-        <p className="hand-help muted">Clique une carte pour voir si elle va sur la défausse, clique-la une 2e fois pour la poser.</p>
+        <p className="hand-help muted">Clique une carte pour l’agrandir, clique-la une 2e fois pour la poser.</p>
       </section>
 
       <aside className={`log ${logOpen ? 'log-open' : ''}`} aria-label="Journal de partie">
