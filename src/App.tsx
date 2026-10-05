@@ -116,6 +116,20 @@ function Home({ onEnter, onRules }: { onEnter: (s: Session) => void; onRules: ()
   const [code, setCode] = useState(urlCode)
   const [busy, setBusy] = useState<'create' | 'join' | null>(null)
   const [err, setErr] = useState<string | null>(null)
+  const [last, setLast] = useState<Session | null>(() => sessionStore.last())
+
+  const resume = async () => {
+    if (!last) return
+    try {
+      const s = await api.state(last.token)
+      if (s.status === 'finished' && !s.players.some((p) => p.active && p.id === s.me.id)) throw new Error()
+      onEnter(last)
+    } catch {
+      sessionStore.forgetLast()
+      setLast(null)
+      setErr('Cette partie n’existe plus.')
+    }
+  }
 
   const run = async (kind: 'create' | 'join') => {
     setErr(null)
@@ -144,6 +158,13 @@ function Home({ onEnter, onRules }: { onEnter: (s: Session) => void; onRules: ()
           Le jeu des communes jurassiennes. Pose une commune du même district ou qui partage un symbole,
           bloque tes adversaires avec les cartes Interdiction, et vide ta main le premier.
         </p>
+
+        {last && (
+          <div className="resume">
+            <span>Tu étais dans la partie <strong>{last.code}</strong>.</span>
+            <button className="btn btn-primary" onClick={resume}>Reprendre ma partie</button>
+          </div>
+        )}
 
         <label className="field">
           <span>Ton pseudo</span>

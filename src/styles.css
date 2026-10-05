@@ -372,3 +372,5 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.1; ma
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+.resume { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; background: #fff; border-left: 6px solid var(--red); border-radius: 12px; padding: .8rem 1rem; max-width: 640px; }

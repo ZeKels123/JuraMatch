@@ -10,7 +10,7 @@ Version informatisée du jeu de cartes **JuraMatch** : 51 communes jurassiennes 
 2. Les autres saisissent ce code dans **Rejoindre** (ou ouvrent le lien d’invitation copié depuis le salon).
 3. L’hôte choisit qui est le plus jeune (il commence) puis lance la partie.
 
-Si on ferme l’onglet, on retrouve sa partie en revenant sur le site avec le même navigateur.
+Si on ferme l’onglet, le bouton « Reprendre ma partie » de l’accueil permet de revenir dans la partie (même navigateur). Chaque onglet est un joueur distinct : on peut tester à plusieurs sur un seul ordinateur.
 
 ## Règles appliquées
 

@@ -62,21 +62,37 @@ export const api = {
   backToLobby: (token: string) => call<void>('jm_back_to_lobby', { p_token: token }),
 }
 
+// La session active est propre à l'onglet (sessionStorage) : on peut ainsi ouvrir
+// plusieurs joueurs dans le même navigateur. La dernière partie est aussi gardée
+// dans localStorage pour proposer « Reprendre ma partie » après fermeture de l'onglet.
 const KEY = 'juramatch:session'
+const LAST = 'juramatch:last'
+const read = (store: Storage, key: string): Session | null => {
+  try {
+    const raw = store.getItem(key)
+    return raw ? (JSON.parse(raw) as Session) : null
+  } catch {
+    return null
+  }
+}
 export const sessionStore = {
-  get(): Session | null {
-    try {
-      const raw = localStorage.getItem(KEY)
-      return raw ? (JSON.parse(raw) as Session) : null
-    } catch {
-      return null
-    }
-  },
+  get: () => read(sessionStorage, KEY),
+  last: () => read(localStorage, LAST),
   set(s: Session) {
-    try { localStorage.setItem(KEY, JSON.stringify(s)) } catch { /* navigation privée */ }
+    try {
+      sessionStorage.setItem(KEY, JSON.stringify(s))
+      localStorage.setItem(LAST, JSON.stringify(s))
+    } catch { /* navigation privée */ }
   },
   clear() {
-    try { localStorage.removeItem(KEY) } catch { /* rien */ }
+    try {
+      const cur = read(sessionStorage, KEY)
+      sessionStorage.removeItem(KEY)
+      if (cur && read(localStorage, LAST)?.token === cur.token) localStorage.removeItem(LAST)
+    } catch { /* rien */ }
+  },
+  forgetLast() {
+    try { localStorage.removeItem(LAST) } catch { /* rien */ }
   },
 }
 
