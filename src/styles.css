@@ -435,3 +435,5 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.1; ma
 @media (min-width: 961px) {
   .focus { left: calc((100vw - 270px) / 2); }
 }
+.chef-note { background: #fde8e8; color: var(--red-deep); border-radius: 8px; padding: .35rem .6rem; font-weight: 700; font-size: .92rem; }
+.notice-chef { background: var(--red); color: #fff; font-weight: 700; }

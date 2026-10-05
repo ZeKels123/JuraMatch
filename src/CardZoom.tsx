@@ -21,6 +21,7 @@ export function CardZoom({ id, onClose }: { id: string; onClose: () => void }) {
               <ul className="zoom-icons">
                 {c.icons.map((i) => <li key={i}><img src={iconImg(i)} alt="" />{iconLabel(i)}</li>)}
               </ul>
+              {c.chef_lieu && <p className="chef-note">Chef-lieu : quand cette carte est posée, le joueur suivant pioche 3 cartes.</p>}
               <p>{c.description}</p>
             </>
           ) : (

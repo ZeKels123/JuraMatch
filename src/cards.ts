@@ -8,6 +8,7 @@ export type Card = {
   altitude?: number
   habitants?: number
   icons: string[]
+  chef_lieu?: boolean
   description?: string
   img: string
 }

@@ -12,7 +12,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 export type Player = { id: string; name: string; seat: number; count: number; active: boolean }
 
 export type LogEvent = {
-  k: 'create' | 'join' | 'start' | 'play' | 'draw' | 'keep' | 'reshuffle' | 'empty' | 'leave' | 'win' | 'lobby'
+  k: 'create' | 'join' | 'start' | 'play' | 'draw' | 'keep' | 'reshuffle' | 'empty' | 'leave' | 'win' | 'lobby' | 'penalty'
   p?: string
   c?: string
   n?: number

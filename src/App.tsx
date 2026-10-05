@@ -391,6 +391,9 @@ function Game({ state, token, act, onLeave, onRules }: {
   const sel = selected ? CARDS[selected] : null
   const selReasons = selected ? matchReasons(selected, state.top_commune, state.forbidden) : null
 
+  const lastEv = state.log[state.log.length - 1]
+  const penalized = myTurn && state.phase === 'play' && lastEv?.k === 'penalty' && lastEv.p === me.name
+
   let status: string
   if (state.status === 'finished') status = 'Partie terminée'
   else if (!me.active) status = 'Tu as quitté cette partie.'
@@ -481,6 +484,11 @@ function Game({ state, token, act, onLeave, onRules }: {
             <button className="btn" disabled={busy} onClick={draw}>{deckEmpty ? 'Passer (pioche vide)' : 'Piocher'}</button>
           </div>
         )}
+        {penalized && (
+          <p className="notice notice-chef">
+            {CARDS[lastEv.c ?? '']?.name ?? 'Un chef-lieu'} a été posé : tu as pioché {lastEv.n} carte{(lastEv.n ?? 0) > 1 ? 's' : ''}.
+          </p>
+        )}
         {notice && <p className="notice">{notice}</p>}
       </section>
 
@@ -518,6 +526,7 @@ function Game({ state, token, act, onLeave, onRules }: {
                 {selReasons.icons.map((i) => <span key={i} className="chip"><img src={iconImg(i)} alt="" />{iconLabel(i)}</span>)}
               </div>
             )}
+            {sel.chef_lieu && <p className="chef-note">Chef-lieu : le joueur suivant pioche 3 cartes.</p>}
             {!myTurn && <p className="muted">Ce n’est pas ton tour.</p>}
             {myTurn && state.phase === 'drawn' && sel.id !== state.drawn_card && (
               <p className="muted">Après avoir pioché, seule la carte piochée peut être posée.</p>

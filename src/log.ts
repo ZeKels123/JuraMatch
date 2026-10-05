@@ -18,6 +18,7 @@ export function describeEvent(e: LogEvent): string {
     case 'empty': return `${e.p} passe : plus aucune carte à piocher.`
     case 'leave': return `${e.p} a quitté la partie.`
     case 'win': return `${e.p} a posé sa dernière carte et gagne !`
+    case 'penalty': return `${card?.name ?? 'Chef-lieu'} : ${e.p} pioche ${e.n} carte${(e.n ?? 0) > 1 ? 's' : ''}.`
     case 'lobby': return 'Retour au salon.'
     default: return ''
   }

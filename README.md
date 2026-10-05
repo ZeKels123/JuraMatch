@@ -1,6 +1,6 @@
 # JuraMatch en ligne
 
-Version informatisée du jeu de cartes **JuraMatch** : 51 communes jurassiennes et 29 cartes Interdiction, jouable à 2–6 joueurs depuis un navigateur, chacun sur son appareil.
+Version informatisée du jeu de cartes **JuraMatch** : 51 communes jurassiennes (1 à 5 symboles, dont 4 chefs-lieux) et 29 cartes Interdiction, jouable à 2–6 joueurs depuis un navigateur, chacun sur son appareil.
 
 **Jouer :** https://zekels123.github.io/JuraMatch/
 
@@ -20,6 +20,7 @@ Si on ferme l’onglet, le bouton « Reprendre ma partie » de l’accueil perme
   - ou poser une **carte Interdiction** sur la pile spéciale ;
   - ou **piocher** : si la carte piochée est jouable, on peut la poser tout de suite (ou la garder), sinon le tour s’arrête.
 - Une Interdiction reste active jusqu’à ce qu’une autre spéciale la recouvre : aucune commune portant le symbole interdit ne peut être posée.
+- **Chefs-lieux** (Delémont, Porrentruy, Saignelégier, Moutier) : quand l’un d’eux est posé, le joueur suivant pioche 3 cartes puis joue normalement.
 - Le premier qui vide sa main gagne. Pioche vide : défausse et pile spéciale (sauf leurs cartes du dessus) sont remélangées.
 
 ## Technique
