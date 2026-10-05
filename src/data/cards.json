@@ -1,0 +1,1088 @@
+{
+ "icons": [
+  {
+   "id": "train",
+   "label": "Train / transports publics"
+  },
+  {
+   "id": "autoroute",
+   "label": "Autoroute A16"
+  },
+  {
+   "id": "frontiere",
+   "label": "Frontière"
+  },
+  {
+   "id": "eau",
+   "label": "Eau & rivières"
+  },
+  {
+   "id": "agriculture",
+   "label": "Agriculture"
+  },
+  {
+   "id": "nature",
+   "label": "Nature"
+  },
+  {
+   "id": "industrie",
+   "label": "Industrie"
+  },
+  {
+   "id": "horlogerie",
+   "label": "Horlogerie"
+  },
+  {
+   "id": "energie",
+   "label": "Énergie"
+  },
+  {
+   "id": "sante",
+   "label": "Santé & hôpital"
+  },
+  {
+   "id": "patrimoine",
+   "label": "Patrimoine & musées"
+  },
+  {
+   "id": "chateau",
+   "label": "Château"
+  },
+  {
+   "id": "sport",
+   "label": "Sport"
+  },
+  {
+   "id": "hiver",
+   "label": "Hiver & neige"
+  }
+ ],
+ "cards": [
+  {
+   "id": "c-alle",
+   "kind": "commune",
+   "name": "Alle",
+   "district": "Porrentruy",
+   "altitude": 450,
+   "habitants": 1900,
+   "icons": [
+    "train",
+    "industrie",
+    "agriculture"
+   ],
+   "description": "Bourg d'Ajoie desservi par les Chemins de fer du Jura, entouré de terres agricoles et accueillant aussi diverses activités artisanales et industrielles.",
+   "img": "cards/communes/alle.webp"
+  },
+  {
+   "id": "c-basse-allaine",
+   "kind": "commune",
+   "name": "Basse-Allaine",
+   "district": "Porrentruy",
+   "altitude": 400,
+   "habitants": 1200,
+   "icons": [
+    "train",
+    "eau",
+    "frontiere"
+   ],
+   "description": "Commune réunissant notamment Buix, Courtemaîche et Montignez, située autour de l'Allaine et à proximité immédiate de la France.",
+   "img": "cards/communes/basse-allaine.webp"
+  },
+  {
+   "id": "c-basse-vendline",
+   "kind": "commune",
+   "name": "Basse-Vendline",
+   "district": "Porrentruy",
+   "altitude": 460,
+   "habitants": 700,
+   "icons": [
+    "eau",
+    "frontiere",
+    "nature"
+   ],
+   "description": "Commune créée par la réunion de Bonfol et Beurnevésin, caractérisée par ses paysages d'Ajoie, ses forêts, ses étangs et la Vendline.",
+   "img": "cards/communes/basse-vendline.webp"
+  },
+  {
+   "id": "c-boncourt",
+   "kind": "commune",
+   "name": "Boncourt",
+   "district": "Porrentruy",
+   "altitude": 370,
+   "habitants": 1200,
+   "icons": [
+    "train",
+    "frontiere",
+    "autoroute"
+   ],
+   "description": "Village-frontière du nord de l'Ajoie, relié au rail vers Delle et situé au débouché jurassien de l'A16.",
+   "img": "cards/communes/boncourt.webp"
+  },
+  {
+   "id": "c-bure",
+   "kind": "commune",
+   "name": "Bure",
+   "district": "Porrentruy",
+   "altitude": 590,
+   "habitants": 600,
+   "icons": [
+    "autoroute",
+    "frontiere",
+    "agriculture"
+   ],
+   "description": "Village agricole de Haute-Ajoie connu notamment pour sa place d'armes et sa proximité avec la frontière et l'A16.",
+   "img": "cards/communes/bure.webp"
+  },
+  {
+   "id": "c-clos-du-doubs",
+   "kind": "commune",
+   "name": "Clos du Doubs",
+   "district": "Porrentruy",
+   "altitude": 440,
+   "habitants": 1300,
+   "icons": [
+    "eau",
+    "nature",
+    "patrimoine"
+   ],
+   "description": "Grande commune organisée autour de la vallée du Doubs et de Saint-Ursanne, cité médiévale emblématique du Jura.",
+   "img": "cards/communes/clos-du-doubs.webp"
+  },
+  {
+   "id": "c-coeuve",
+   "kind": "commune",
+   "name": "Cœuve",
+   "district": "Porrentruy",
+   "altitude": 440,
+   "habitants": 700,
+   "icons": [
+    "eau",
+    "chateau",
+    "patrimoine"
+   ],
+   "description": "Village ajoulot connu pour son château, ses lavoirs historiques et son environnement agricole.",
+   "img": "cards/communes/coeuve.webp"
+  },
+  {
+   "id": "c-cornol",
+   "kind": "commune",
+   "name": "Cornol",
+   "district": "Porrentruy",
+   "altitude": 520,
+   "habitants": 1100,
+   "icons": [
+    "chateau",
+    "nature",
+    "patrimoine"
+   ],
+   "description": "Village au pied des Rangiers, proche du Mont Terri et de paysages naturels et archéologiques importants.",
+   "img": "cards/communes/cornol.webp"
+  },
+  {
+   "id": "c-courchavon",
+   "kind": "commune",
+   "name": "Courchavon",
+   "district": "Porrentruy",
+   "altitude": 410,
+   "habitants": 300,
+   "icons": [
+    "train",
+    "eau",
+    "agriculture"
+   ],
+   "description": "Petit village installé dans la vallée de l'Allaine, entre Porrentruy et la frontière française.",
+   "img": "cards/communes/courchavon.webp"
+  },
+  {
+   "id": "c-courgenay",
+   "kind": "commune",
+   "name": "Courgenay",
+   "district": "Porrentruy",
+   "altitude": 490,
+   "habitants": 2400,
+   "icons": [
+    "train",
+    "autoroute",
+    "horlogerie"
+   ],
+   "description": "Important bourg d'Ajoie desservi par le rail et l'A16, avec une tradition industrielle et microtechnique liée à l'horlogerie.",
+   "img": "cards/communes/courgenay.webp"
+  },
+  {
+   "id": "c-courtedoux",
+   "kind": "commune",
+   "name": "Courtedoux",
+   "district": "Porrentruy",
+   "altitude": 470,
+   "habitants": 800,
+   "icons": [
+    "nature",
+    "patrimoine",
+    "sport"
+   ],
+   "description": "Commune d'Ajoie particulièrement connue pour les découvertes paléontologiques réalisées lors des travaux de l'A16.",
+   "img": "cards/communes/courtedoux.webp"
+  },
+  {
+   "id": "c-damphreux-lugnez",
+   "kind": "commune",
+   "name": "Damphreux-Lugnez",
+   "district": "Porrentruy",
+   "altitude": 410,
+   "habitants": 400,
+   "icons": [
+    "nature",
+    "agriculture",
+    "frontiere"
+   ],
+   "description": "Commune issue de la fusion de Damphreux et Lugnez, connue pour ses zones humides et son paysage rural proche de la frontière.",
+   "img": "cards/communes/damphreux-lugnez.webp"
+  },
+  {
+   "id": "c-fahy",
+   "kind": "commune",
+   "name": "Fahy",
+   "district": "Porrentruy",
+   "altitude": 570,
+   "habitants": 300,
+   "icons": [
+    "frontiere",
+    "industrie",
+    "agriculture"
+   ],
+   "description": "Village de Haute-Ajoie situé contre la France, où l'agriculture côtoie des activités industrielles.",
+   "img": "cards/communes/fahy.webp"
+  },
+  {
+   "id": "c-fontenais",
+   "kind": "commune",
+   "name": "Fontenais",
+   "district": "Porrentruy",
+   "altitude": 460,
+   "habitants": 1600,
+   "icons": [
+    "sport",
+    "energie",
+    "nature"
+   ],
+   "description": "Commune voisine de Porrentruy comprenant notamment Bressaucourt, avec des équipements sportifs et un raccordement au réseau énergétique régional.",
+   "img": "cards/communes/fontenais.webp"
+  },
+  {
+   "id": "c-grandfontaine",
+   "kind": "commune",
+   "name": "Grandfontaine",
+   "district": "Porrentruy",
+   "altitude": 530,
+   "habitants": 400,
+   "icons": [
+    "frontiere",
+    "horlogerie",
+    "patrimoine"
+   ],
+   "description": "Village de Haute-Ajoie proche de la France, marqué historiquement par le travail de la pierre et par des ateliers liés à l'horlogerie.",
+   "img": "cards/communes/grandfontaine.webp"
+  },
+  {
+   "id": "c-haute-ajoie",
+   "kind": "commune",
+   "name": "Haute-Ajoie",
+   "district": "Porrentruy",
+   "altitude": 490,
+   "habitants": 1100,
+   "icons": [
+    "frontiere",
+    "nature",
+    "patrimoine"
+   ],
+   "description": "Grande commune de l'ouest jurassien réunissant plusieurs villages, connue notamment pour les grottes de Réclère et ses paysages frontaliers.",
+   "img": "cards/communes/haute-ajoie.webp"
+  },
+  {
+   "id": "c-la-baroche",
+   "kind": "commune",
+   "name": "La Baroche",
+   "district": "Porrentruy",
+   "altitude": 480,
+   "habitants": 1100,
+   "icons": [
+    "chateau",
+    "horlogerie",
+    "patrimoine"
+   ],
+   "description": "Commune réunissant notamment Asuel, Charmoille, Miécourt et Pleujouse, riche en patrimoine et aujourd'hui également liée à l'horlogerie.",
+   "img": "cards/communes/la-baroche.webp"
+  },
+  {
+   "id": "c-porrentruy",
+   "kind": "commune",
+   "name": "Porrentruy",
+   "district": "Porrentruy",
+   "altitude": 440,
+   "habitants": 6600,
+   "icons": [
+    "chateau",
+    "sante",
+    "horlogerie"
+   ],
+   "description": "Deuxième grand centre urbain jurassien, ancienne résidence des princes-évêques, avec hôpital, château et forte tradition horlogère et microtechnique.",
+   "img": "cards/communes/porrentruy.webp"
+  },
+  {
+   "id": "c-vendlincourt",
+   "kind": "commune",
+   "name": "Vendlincourt",
+   "district": "Porrentruy",
+   "altitude": 450,
+   "habitants": 600,
+   "icons": [
+    "train",
+    "industrie",
+    "horlogerie"
+   ],
+   "description": "Village d'Ajoie desservi par les CJ, où coexistent scierie, mécanique de précision et héritage horloger.",
+   "img": "cards/communes/vendlincourt.webp"
+  },
+  {
+   "id": "c-boecourt",
+   "kind": "commune",
+   "name": "Boécourt",
+   "district": "Delémont",
+   "altitude": 520,
+   "habitants": 1000,
+   "icons": [
+    "autoroute",
+    "industrie",
+    "nature"
+   ],
+   "description": "Commune située au pied des Rangiers, proche du nœud routier jurassien et mêlant habitat, activités économiques et paysages boisés.",
+   "img": "cards/communes/boecourt.webp"
+  },
+  {
+   "id": "c-bourrignon",
+   "kind": "commune",
+   "name": "Bourrignon",
+   "district": "Delémont",
+   "altitude": 770,
+   "habitants": 300,
+   "icons": [
+    "agriculture",
+    "hiver",
+    "patrimoine"
+   ],
+   "description": "Village établi sur les hauteurs au nord-ouest de Delémont, sur l'ancien passage vers Lucelle et les Rangiers.",
+   "img": "cards/communes/bourrignon.webp"
+  },
+  {
+   "id": "c-chatillon",
+   "kind": "commune",
+   "name": "Châtillon",
+   "district": "Delémont",
+   "altitude": 520,
+   "habitants": 500,
+   "icons": [
+    "agriculture",
+    "nature",
+    "sport"
+   ],
+   "description": "Petite commune au sud de la vallée de Delémont, connue notamment pour son célèbre chêne monumental et ses paysages boisés.",
+   "img": "cards/communes/chatillon.webp"
+  },
+  {
+   "id": "c-courchapoix",
+   "kind": "commune",
+   "name": "Courchapoix",
+   "district": "Delémont",
+   "altitude": 500,
+   "habitants": 400,
+   "icons": [
+    "eau",
+    "agriculture",
+    "nature"
+   ],
+   "description": "Village du Val Terbi traversé par la Scheulte, au milieu d'un paysage agricole et forestier.",
+   "img": "cards/communes/courchapoix.webp"
+  },
+  {
+   "id": "c-courrendlin",
+   "kind": "commune",
+   "name": "Courrendlin",
+   "district": "Delémont",
+   "altitude": 440,
+   "habitants": 3700,
+   "icons": [
+    "eau",
+    "industrie",
+    "autoroute"
+   ],
+   "description": "Commune située à l'entrée de la cluse de Moutier, marquée à la fois par la Birse, l'A16 et le passé industriel de Choindez.",
+   "img": "cards/communes/courrendlin.webp"
+  },
+  {
+   "id": "c-courroux",
+   "kind": "commune",
+   "name": "Courroux",
+   "district": "Delémont",
+   "altitude": 420,
+   "habitants": 3400,
+   "icons": [
+    "eau",
+    "industrie",
+    "patrimoine"
+   ],
+   "description": "Grande commune de l'agglomération de Delémont située dans la vallée de la Birse, mêlant quartiers résidentiels, activités économiques et vieux noyaux villageois.",
+   "img": "cards/communes/courroux.webp"
+  },
+  {
+   "id": "c-courtetelle",
+   "kind": "commune",
+   "name": "Courtételle",
+   "district": "Delémont",
+   "altitude": 440,
+   "habitants": 2800,
+   "icons": [
+    "train",
+    "eau",
+    "industrie"
+   ],
+   "description": "Commune de la vallée de la Sorne située entre Delémont et Haute-Sorne, desservie par le rail et accueillant de nombreuses activités économiques.",
+   "img": "cards/communes/courtetelle.webp"
+  },
+  {
+   "id": "c-delemont",
+   "kind": "commune",
+   "name": "Delémont",
+   "district": "Delémont",
+   "altitude": 440,
+   "habitants": 12800,
+   "icons": [
+    "chateau",
+    "sante",
+    "energie"
+   ],
+   "description": "Capitale du canton du Jura, centre administratif et hospitalier, avec une vieille ville dominée par l'ancien château épiscopal.",
+   "img": "cards/communes/delemont.webp"
+  },
+  {
+   "id": "c-develier",
+   "kind": "commune",
+   "name": "Develier",
+   "district": "Delémont",
+   "altitude": 480,
+   "habitants": 1400,
+   "icons": [
+    "autoroute",
+    "industrie",
+    "agriculture"
+   ],
+   "description": "Commune immédiatement à l'ouest de Delémont, située sur le corridor de l'A16 et mêlant agriculture et activités industrielles.",
+   "img": "cards/communes/develier.webp"
+  },
+  {
+   "id": "c-ederswiler",
+   "kind": "commune",
+   "name": "Ederswiler",
+   "district": "Delémont",
+   "altitude": 550,
+   "habitants": 100,
+   "icons": [
+    "agriculture",
+    "nature",
+    "patrimoine"
+   ],
+   "description": "Très petite commune du nord du district, particularité linguistique du Jura puisqu'elle est essentiellement germanophone.",
+   "img": "cards/communes/ederswiler.webp"
+  },
+  {
+   "id": "c-haute-sorne",
+   "kind": "commune",
+   "name": "Haute-Sorne",
+   "district": "Delémont",
+   "altitude": 480,
+   "habitants": 7500,
+   "icons": [
+    "train",
+    "energie",
+    "horlogerie"
+   ],
+   "description": "Grande commune de la vallée de la Sorne comprenant notamment Bassecourt, Courfaivre et Glovelier, où se rencontrent rail, microtechnique et projets énergétiques.",
+   "img": "cards/communes/haute-sorne.webp"
+  },
+  {
+   "id": "c-mervelier",
+   "kind": "commune",
+   "name": "Mervelier",
+   "district": "Delémont",
+   "altitude": 560,
+   "habitants": 500,
+   "icons": [
+    "eau",
+    "agriculture",
+    "nature"
+   ],
+   "description": "Village du Val Terbi établi le long de la Scheulte et au pied des reliefs menant vers le col du Schelten.",
+   "img": "cards/communes/mervelier.webp"
+  },
+  {
+   "id": "c-mettembert",
+   "kind": "commune",
+   "name": "Mettembert",
+   "district": "Delémont",
+   "altitude": 660,
+   "habitants": 100,
+   "icons": [
+    "agriculture",
+    "nature",
+    "patrimoine"
+   ],
+   "description": "Petite commune installée sur les hauteurs au nord de Delémont, dominée par les forêts et les terres agricoles.",
+   "img": "cards/communes/mettembert.webp"
+  },
+  {
+   "id": "c-movelier",
+   "kind": "commune",
+   "name": "Movelier",
+   "district": "Delémont",
+   "altitude": 690,
+   "habitants": 400,
+   "icons": [
+    "agriculture",
+    "nature",
+    "hiver"
+   ],
+   "description": "Village élevé et boisé du nord-est du district de Delémont, proche du plateau de Pleigne.",
+   "img": "cards/communes/movelier.webp"
+  },
+  {
+   "id": "c-pleigne",
+   "kind": "commune",
+   "name": "Pleigne",
+   "district": "Delémont",
+   "altitude": 810,
+   "habitants": 400,
+   "icons": [
+    "chateau",
+    "frontiere",
+    "patrimoine"
+   ],
+   "description": "Commune de plateau comprenant notamment le secteur de Lucelle, à la frontière française et riche en vestiges historiques.",
+   "img": "cards/communes/pleigne.webp"
+  },
+  {
+   "id": "c-rossemaison",
+   "kind": "commune",
+   "name": "Rossemaison",
+   "district": "Delémont",
+   "altitude": 460,
+   "habitants": 700,
+   "icons": [
+    "sport",
+    "industrie",
+    "horlogerie"
+   ],
+   "description": "Commune proche de Delémont, particulièrement connue dans le Jura pour l'inline hockey et accueillant aussi des entreprises industrielles et horlogères.",
+   "img": "cards/communes/rossemaison.webp"
+  },
+  {
+   "id": "c-saulcy",
+   "kind": "commune",
+   "name": "Saulcy",
+   "district": "Delémont",
+   "altitude": 910,
+   "habitants": 300,
+   "icons": [
+    "hiver",
+    "agriculture",
+    "nature"
+   ],
+   "description": "Village de montagne situé à plus de 900 m, au milieu des pâturages et des forêts entre les grands centres jurassiens.",
+   "img": "cards/communes/saulcy.webp"
+  },
+  {
+   "id": "c-soyhieres",
+   "kind": "commune",
+   "name": "Soyhières",
+   "district": "Delémont",
+   "altitude": 400,
+   "habitants": 500,
+   "icons": [
+    "chateau",
+    "eau",
+    "patrimoine"
+   ],
+   "description": "Village situé dans la vallée de la Birse au nord de Delémont, au pied des vestiges du château de Soyhières.",
+   "img": "cards/communes/soyhieres.webp"
+  },
+  {
+   "id": "c-val-terbi",
+   "kind": "commune",
+   "name": "Val Terbi",
+   "district": "Delémont",
+   "altitude": 460,
+   "habitants": 3300,
+   "icons": [
+    "eau",
+    "industrie",
+    "nature"
+   ],
+   "description": "Grande commune orientale du district organisée autour de Vicques et de plusieurs villages du Val Terbi.",
+   "img": "cards/communes/val-terbi.webp"
+  },
+  {
+   "id": "c-lajoux",
+   "kind": "commune",
+   "name": "Lajoux",
+   "district": "Franches-Montagnes",
+   "altitude": 960,
+   "habitants": 700,
+   "icons": [
+    "hiver",
+    "horlogerie",
+    "industrie"
+   ],
+   "description": "Village élevé des Franches-Montagnes, historiquement agricole mais également marqué par l'horlogerie et la mécanique.",
+   "img": "cards/communes/lajoux.webp"
+  },
+  {
+   "id": "c-le-bemont",
+   "kind": "commune",
+   "name": "Le Bémont",
+   "district": "Franches-Montagnes",
+   "altitude": 980,
+   "habitants": 300,
+   "icons": [
+    "hiver",
+    "sport",
+    "train"
+   ],
+   "description": "Petite commune du haut plateau des Franches-Montagnes, desservie par le train rouge des CJ.",
+   "img": "cards/communes/le-bemont.webp"
+  },
+  {
+   "id": "c-le-noirmont",
+   "kind": "commune",
+   "name": "Le Noirmont",
+   "district": "Franches-Montagnes",
+   "altitude": 970,
+   "habitants": 1900,
+   "icons": [
+    "sante",
+    "horlogerie",
+    "energie"
+   ],
+   "description": "Important centre des Franches-Montagnes, connu pour son industrie horlogère, sa clinique de réadaptation et la proximité de la centrale de La Goule.",
+   "img": "cards/communes/le-noirmont.webp"
+  },
+  {
+   "id": "c-les-bois",
+   "kind": "commune",
+   "name": "Les Bois",
+   "district": "Franches-Montagnes",
+   "altitude": 1030,
+   "habitants": 1200,
+   "icons": [
+    "horlogerie",
+    "frontiere",
+    "sport"
+   ],
+   "description": "Commune du haut plateau proche de la France, connue pour l'horlogerie ainsi que pour les activités sportives et hivernales.",
+   "img": "cards/communes/les-bois.webp"
+  },
+  {
+   "id": "c-les-breuleux",
+   "kind": "commune",
+   "name": "Les Breuleux",
+   "district": "Franches-Montagnes",
+   "altitude": 1040,
+   "habitants": 1600,
+   "icons": [
+    "train",
+    "horlogerie",
+    "sport"
+   ],
+   "description": "Bourg industriel des Franches-Montagnes situé à plus de 1000 m, fortement associé à l'horlogerie et aux sports d'hiver.",
+   "img": "cards/communes/les-breuleux.webp"
+  },
+  {
+   "id": "c-les-enfers",
+   "kind": "commune",
+   "name": "Les Enfers",
+   "district": "Franches-Montagnes",
+   "altitude": 960,
+   "habitants": 200,
+   "icons": [
+    "agriculture",
+    "hiver",
+    "nature"
+   ],
+   "description": "Très petite commune de montagne caractérisée par ses fermes, ses pâturages boisés et son altitude élevée.",
+   "img": "cards/communes/les-enfers.webp"
+  },
+  {
+   "id": "c-les-genevez",
+   "kind": "commune",
+   "name": "Les Genevez",
+   "district": "Franches-Montagnes",
+   "altitude": 1040,
+   "habitants": 500,
+   "icons": [
+    "agriculture",
+    "hiver",
+    "patrimoine"
+   ],
+   "description": "Village du haut plateau abritant notamment le Musée rural jurassien, témoin de la vie traditionnelle de la région.",
+   "img": "cards/communes/les-genevez.webp"
+  },
+  {
+   "id": "c-montfaucon",
+   "kind": "commune",
+   "name": "Montfaucon",
+   "district": "Franches-Montagnes",
+   "altitude": 1000,
+   "habitants": 600,
+   "icons": [
+    "hiver",
+    "sport",
+    "train"
+   ],
+   "description": "Commune touristique du haut plateau, connue pour ses randonnées, ses activités hivernales et la gare de Pré-Petitjean.",
+   "img": "cards/communes/montfaucon.webp"
+  },
+  {
+   "id": "c-muriaux",
+   "kind": "commune",
+   "name": "Muriaux",
+   "district": "Franches-Montagnes",
+   "altitude": 950,
+   "habitants": 500,
+   "icons": [
+    "chateau",
+    "hiver",
+    "train"
+   ],
+   "description": "Commune du plateau jurassien regroupant plusieurs hameaux, avec des vestiges castraux et une halte ferroviaire des CJ.",
+   "img": "cards/communes/muriaux.webp"
+  },
+  {
+   "id": "c-saignelegier",
+   "kind": "commune",
+   "name": "Saignelégier",
+   "district": "Franches-Montagnes",
+   "altitude": 980,
+   "habitants": 2500,
+   "icons": [
+    "train",
+    "sport",
+    "horlogerie"
+   ],
+   "description": "Chef-lieu des Franches-Montagnes, célèbre pour le Marché-Concours national de chevaux et important centre horloger et sportif.",
+   "img": "cards/communes/saignelegier.webp"
+  },
+  {
+   "id": "c-saint-brais",
+   "kind": "commune",
+   "name": "Saint-Brais",
+   "district": "Franches-Montagnes",
+   "altitude": 970,
+   "habitants": 200,
+   "icons": [
+    "hiver",
+    "agriculture",
+    "train"
+   ],
+   "description": "Commune de montagne dont le territoire descend du plateau jusqu'aux secteurs proches du Doubs et comprend la halte ferroviaire de Bollement.",
+   "img": "cards/communes/saint-brais.webp"
+  },
+  {
+   "id": "c-soubey",
+   "kind": "commune",
+   "name": "Soubey",
+   "district": "Franches-Montagnes",
+   "altitude": 480,
+   "habitants": 100,
+   "icons": [
+    "eau",
+    "energie",
+    "frontiere"
+   ],
+   "description": "Petit village de la vallée du Doubs situé contre la France, avec un ancien moulin hydroélectrique et un environnement naturel remarquable.",
+   "img": "cards/communes/soubey.webp"
+  },
+  {
+   "id": "c-moutier",
+   "kind": "commune",
+   "name": "Moutier",
+   "district": "Moutier",
+   "altitude": 540,
+   "habitants": 7300,
+   "icons": [
+    "train",
+    "industrie",
+    "sante"
+   ],
+   "description": "Ville industrielle devenue jurassienne en 2026, important nœud ferroviaire de l'Arc jurassien et centre historique de la machine-outil.",
+   "img": "cards/communes/moutier.webp"
+  },
+  {
+   "id": "s-train-1",
+   "kind": "special",
+   "name": "Interdiction : Train / transports publics",
+   "icons": [
+    "train"
+   ],
+   "img": "cards/special/train.webp"
+  },
+  {
+   "id": "s-train-2",
+   "kind": "special",
+   "name": "Interdiction : Train / transports publics",
+   "icons": [
+    "train"
+   ],
+   "img": "cards/special/train.webp"
+  },
+  {
+   "id": "s-autoroute-1",
+   "kind": "special",
+   "name": "Interdiction : Autoroute A16",
+   "icons": [
+    "autoroute"
+   ],
+   "img": "cards/special/autoroute.webp"
+  },
+  {
+   "id": "s-autoroute-2",
+   "kind": "special",
+   "name": "Interdiction : Autoroute A16",
+   "icons": [
+    "autoroute"
+   ],
+   "img": "cards/special/autoroute.webp"
+  },
+  {
+   "id": "s-frontiere-1",
+   "kind": "special",
+   "name": "Interdiction : Frontière",
+   "icons": [
+    "frontiere"
+   ],
+   "img": "cards/special/frontiere.webp"
+  },
+  {
+   "id": "s-frontiere-2",
+   "kind": "special",
+   "name": "Interdiction : Frontière",
+   "icons": [
+    "frontiere"
+   ],
+   "img": "cards/special/frontiere.webp"
+  },
+  {
+   "id": "s-eau-1",
+   "kind": "special",
+   "name": "Interdiction : Eau & rivières",
+   "icons": [
+    "eau"
+   ],
+   "img": "cards/special/eau.webp"
+  },
+  {
+   "id": "s-eau-2",
+   "kind": "special",
+   "name": "Interdiction : Eau & rivières",
+   "icons": [
+    "eau"
+   ],
+   "img": "cards/special/eau.webp"
+  },
+  {
+   "id": "s-agriculture-1",
+   "kind": "special",
+   "name": "Interdiction : Agriculture",
+   "icons": [
+    "agriculture"
+   ],
+   "img": "cards/special/agriculture.webp"
+  },
+  {
+   "id": "s-agriculture-2",
+   "kind": "special",
+   "name": "Interdiction : Agriculture",
+   "icons": [
+    "agriculture"
+   ],
+   "img": "cards/special/agriculture.webp"
+  },
+  {
+   "id": "s-nature-1",
+   "kind": "special",
+   "name": "Interdiction : Nature",
+   "icons": [
+    "nature"
+   ],
+   "img": "cards/special/nature.webp"
+  },
+  {
+   "id": "s-nature-2",
+   "kind": "special",
+   "name": "Interdiction : Nature",
+   "icons": [
+    "nature"
+   ],
+   "img": "cards/special/nature.webp"
+  },
+  {
+   "id": "s-industrie-1",
+   "kind": "special",
+   "name": "Interdiction : Industrie",
+   "icons": [
+    "industrie"
+   ],
+   "img": "cards/special/industrie.webp"
+  },
+  {
+   "id": "s-industrie-2",
+   "kind": "special",
+   "name": "Interdiction : Industrie",
+   "icons": [
+    "industrie"
+   ],
+   "img": "cards/special/industrie.webp"
+  },
+  {
+   "id": "s-horlogerie-1",
+   "kind": "special",
+   "name": "Interdiction : Horlogerie",
+   "icons": [
+    "horlogerie"
+   ],
+   "img": "cards/special/horlogerie.webp"
+  },
+  {
+   "id": "s-horlogerie-2",
+   "kind": "special",
+   "name": "Interdiction : Horlogerie",
+   "icons": [
+    "horlogerie"
+   ],
+   "img": "cards/special/horlogerie.webp"
+  },
+  {
+   "id": "s-energie-1",
+   "kind": "special",
+   "name": "Interdiction : Énergie",
+   "icons": [
+    "energie"
+   ],
+   "img": "cards/special/energie.webp"
+  },
+  {
+   "id": "s-energie-2",
+   "kind": "special",
+   "name": "Interdiction : Énergie",
+   "icons": [
+    "energie"
+   ],
+   "img": "cards/special/energie.webp"
+  },
+  {
+   "id": "s-sante-1",
+   "kind": "special",
+   "name": "Interdiction : Santé & hôpital",
+   "icons": [
+    "sante"
+   ],
+   "img": "cards/special/sante.webp"
+  },
+  {
+   "id": "s-sante-2",
+   "kind": "special",
+   "name": "Interdiction : Santé & hôpital",
+   "icons": [
+    "sante"
+   ],
+   "img": "cards/special/sante.webp"
+  },
+  {
+   "id": "s-patrimoine-1",
+   "kind": "special",
+   "name": "Interdiction : Patrimoine & musées",
+   "icons": [
+    "patrimoine"
+   ],
+   "img": "cards/special/patrimoine.webp"
+  },
+  {
+   "id": "s-patrimoine-2",
+   "kind": "special",
+   "name": "Interdiction : Patrimoine & musées",
+   "icons": [
+    "patrimoine"
+   ],
+   "img": "cards/special/patrimoine.webp"
+  },
+  {
+   "id": "s-chateau-1",
+   "kind": "special",
+   "name": "Interdiction : Château",
+   "icons": [
+    "chateau"
+   ],
+   "img": "cards/special/chateau.webp"
+  },
+  {
+   "id": "s-chateau-2",
+   "kind": "special",
+   "name": "Interdiction : Château",
+   "icons": [
+    "chateau"
+   ],
+   "img": "cards/special/chateau.webp"
+  },
+  {
+   "id": "s-chateau-3",
+   "kind": "special",
+   "name": "Interdiction : Château",
+   "icons": [
+    "chateau"
+   ],
+   "img": "cards/special/chateau.webp"
+  },
+  {
+   "id": "s-sport-1",
+   "kind": "special",
+   "name": "Interdiction : Sport",
+   "icons": [
+    "sport"
+   ],
+   "img": "cards/special/sport.webp"
+  },
+  {
+   "id": "s-sport-2",
+   "kind": "special",
+   "name": "Interdiction : Sport",
+   "icons": [
+    "sport"
+   ],
+   "img": "cards/special/sport.webp"
+  },
+  {
+   "id": "s-hiver-1",
+   "kind": "special",
+   "name": "Interdiction : Hiver & neige",
+   "icons": [
+    "hiver"
+   ],
+   "img": "cards/special/hiver.webp"
+  },
+  {
+   "id": "s-hiver-2",
+   "kind": "special",
+   "name": "Interdiction : Hiver & neige",
+   "icons": [
+    "hiver"
+   ],
+   "img": "cards/special/hiver.webp"
+  }
+ ]
+}
