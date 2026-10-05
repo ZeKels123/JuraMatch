@@ -496,8 +496,11 @@ function Game({ state, token, act, onLeave, onRules }: {
               <button
                 key={id}
                 className={`hand-card ${can ? 'can' : ''} ${myTurn && !can ? 'cannot' : ''} ${isSel ? 'sel' : ''} ${state.drawn_card === id ? 'drawn' : ''}`}
-                onClick={() => setSelected(isSel ? null : id)}
-                onDoubleClick={() => { if (can && !busy) void play(id) }}
+                onClick={() => {
+                  // 1er clic : sélectionne la carte ; 2e clic sur une carte jouable : la pose
+                  if (isSel && can && !busy) void play(id)
+                  else setSelected(isSel ? null : id)
+                }}
                 aria-pressed={isSel}
                 aria-label={`${c?.name}${can ? ', jouable' : ''}`}
               >
@@ -506,7 +509,7 @@ function Game({ state, token, act, onLeave, onRules }: {
             )
           })}
         </div>
-        <p className="hand-help muted">Clique une carte pour voir pourquoi elle va (ou pas) sur la défausse. Double-clic pour la poser.</p>
+        <p className="hand-help muted">Clique une carte pour voir si elle va sur la défausse, clique-la une 2e fois pour la poser.</p>
       </section>
 
       <aside className={`log ${logOpen ? 'log-open' : ''}`} aria-label="Journal de partie">
