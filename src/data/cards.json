@@ -328,7 +328,8 @@
    ],
    "description": "Deuxième grand centre urbain jurassien, ancienne résidence des princes-évêques, avec hôpital, château et forte tradition horlogère et microtechnique.",
    "img": "cards/communes/porrentruy.webp",
-   "chef_lieu": true
+   "chef_lieu": true,
+   "draw_next": 3
   },
   {
    "id": "c-vendlincourt",
@@ -466,7 +467,8 @@
    ],
    "description": "Capitale du canton du Jura, centre administratif et hospitalier, avec une vieille ville dominée par l'ancien château épiscopal.",
    "img": "cards/communes/delemont.webp",
-   "chef_lieu": true
+   "chef_lieu": true,
+   "draw_next": 3
   },
   {
    "id": "c-develier",
@@ -777,7 +779,8 @@
    ],
    "description": "Chef-lieu des Franches-Montagnes, célèbre pour le Marché-Concours national de chevaux et important centre horloger et sportif.",
    "img": "cards/communes/saignelegier.webp",
-   "chef_lieu": true
+   "chef_lieu": true,
+   "draw_next": 3
   },
   {
    "id": "c-saint-brais",
@@ -823,19 +826,11 @@
    ],
    "description": "Ville industrielle devenue jurassienne en 2026, important nœud ferroviaire de l'Arc jurassien et centre historique de la machine-outil.",
    "img": "cards/communes/moutier.webp",
-   "chef_lieu": true
+   "chef_lieu": true,
+   "draw_next": 3
   },
   {
    "id": "s-train-1",
-   "kind": "special",
-   "name": "Interdiction : Train / transports publics",
-   "icons": [
-    "train"
-   ],
-   "img": "cards/special/train.webp"
-  },
-  {
-   "id": "s-train-2",
    "kind": "special",
    "name": "Interdiction : Train / transports publics",
    "icons": [
@@ -853,25 +848,7 @@
    "img": "cards/special/autoroute.webp"
   },
   {
-   "id": "s-autoroute-2",
-   "kind": "special",
-   "name": "Interdiction : Autoroute A16",
-   "icons": [
-    "autoroute"
-   ],
-   "img": "cards/special/autoroute.webp"
-  },
-  {
    "id": "s-frontiere-1",
-   "kind": "special",
-   "name": "Interdiction : Frontière",
-   "icons": [
-    "frontiere"
-   ],
-   "img": "cards/special/frontiere.webp"
-  },
-  {
-   "id": "s-frontiere-2",
    "kind": "special",
    "name": "Interdiction : Frontière",
    "icons": [
@@ -889,25 +866,7 @@
    "img": "cards/special/eau.webp"
   },
   {
-   "id": "s-eau-2",
-   "kind": "special",
-   "name": "Interdiction : Eau & rivières",
-   "icons": [
-    "eau"
-   ],
-   "img": "cards/special/eau.webp"
-  },
-  {
    "id": "s-agriculture-1",
-   "kind": "special",
-   "name": "Interdiction : Agriculture",
-   "icons": [
-    "agriculture"
-   ],
-   "img": "cards/special/agriculture.webp"
-  },
-  {
-   "id": "s-agriculture-2",
    "kind": "special",
    "name": "Interdiction : Agriculture",
    "icons": [
@@ -925,25 +884,7 @@
    "img": "cards/special/nature.webp"
   },
   {
-   "id": "s-nature-2",
-   "kind": "special",
-   "name": "Interdiction : Nature",
-   "icons": [
-    "nature"
-   ],
-   "img": "cards/special/nature.webp"
-  },
-  {
    "id": "s-industrie-1",
-   "kind": "special",
-   "name": "Interdiction : Industrie",
-   "icons": [
-    "industrie"
-   ],
-   "img": "cards/special/industrie.webp"
-  },
-  {
-   "id": "s-industrie-2",
    "kind": "special",
    "name": "Interdiction : Industrie",
    "icons": [
@@ -961,25 +902,7 @@
    "img": "cards/special/horlogerie.webp"
   },
   {
-   "id": "s-horlogerie-2",
-   "kind": "special",
-   "name": "Interdiction : Horlogerie",
-   "icons": [
-    "horlogerie"
-   ],
-   "img": "cards/special/horlogerie.webp"
-  },
-  {
    "id": "s-energie-1",
-   "kind": "special",
-   "name": "Interdiction : Énergie",
-   "icons": [
-    "energie"
-   ],
-   "img": "cards/special/energie.webp"
-  },
-  {
-   "id": "s-energie-2",
    "kind": "special",
    "name": "Interdiction : Énergie",
    "icons": [
@@ -997,25 +920,7 @@
    "img": "cards/special/sante.webp"
   },
   {
-   "id": "s-sante-2",
-   "kind": "special",
-   "name": "Interdiction : Santé & hôpital",
-   "icons": [
-    "sante"
-   ],
-   "img": "cards/special/sante.webp"
-  },
-  {
    "id": "s-patrimoine-1",
-   "kind": "special",
-   "name": "Interdiction : Patrimoine & musées",
-   "icons": [
-    "patrimoine"
-   ],
-   "img": "cards/special/patrimoine.webp"
-  },
-  {
-   "id": "s-patrimoine-2",
    "kind": "special",
    "name": "Interdiction : Patrimoine & musées",
    "icons": [
@@ -1033,34 +938,7 @@
    "img": "cards/special/chateau.webp"
   },
   {
-   "id": "s-chateau-2",
-   "kind": "special",
-   "name": "Interdiction : Château",
-   "icons": [
-    "chateau"
-   ],
-   "img": "cards/special/chateau.webp"
-  },
-  {
-   "id": "s-chateau-3",
-   "kind": "special",
-   "name": "Interdiction : Château",
-   "icons": [
-    "chateau"
-   ],
-   "img": "cards/special/chateau.webp"
-  },
-  {
    "id": "s-sport-1",
-   "kind": "special",
-   "name": "Interdiction : Sport",
-   "icons": [
-    "sport"
-   ],
-   "img": "cards/special/sport.webp"
-  },
-  {
-   "id": "s-sport-2",
    "kind": "special",
    "name": "Interdiction : Sport",
    "icons": [
@@ -1078,13 +956,226 @@
    "img": "cards/special/hiver.webp"
   },
   {
+   "id": "s-plus2-1",
+   "kind": "special",
+   "name": "Carte +2",
+   "icons": [],
+   "draw_next": 2,
+   "img": "cards/special/plus2.webp"
+  },
+  {
+   "id": "s-plus2-2",
+   "kind": "special",
+   "name": "Carte +2",
+   "icons": [],
+   "draw_next": 2,
+   "img": "cards/special/plus2.webp"
+  },
+  {
+   "id": "s-plus2-3",
+   "kind": "special",
+   "name": "Carte +2",
+   "icons": [],
+   "draw_next": 2,
+   "img": "cards/special/plus2.webp"
+  },
+  {
+   "id": "s-plus2-4",
+   "kind": "special",
+   "name": "Carte +2",
+   "icons": [],
+   "draw_next": 2,
+   "img": "cards/special/plus2.webp"
+  },
+  {
+   "id": "s-plus2-5",
+   "kind": "special",
+   "name": "Carte +2",
+   "icons": [],
+   "draw_next": 2,
+   "img": "cards/special/plus2.webp"
+  },
+  {
+   "id": "s-plus2-6",
+   "kind": "special",
+   "name": "Carte +2",
+   "icons": [],
+   "draw_next": 2,
+   "img": "cards/special/plus2.webp"
+  },
+  {
+   "id": "s-plus2-7",
+   "kind": "special",
+   "name": "Carte +2",
+   "icons": [],
+   "draw_next": 2,
+   "img": "cards/special/plus2.webp"
+  },
+  {
+   "id": "s-plus2-8",
+   "kind": "special",
+   "name": "Carte +2",
+   "icons": [],
+   "draw_next": 2,
+   "img": "cards/special/plus2.webp"
+  },
+  {
+   "id": "s-plus2-9",
+   "kind": "special",
+   "name": "Carte +2",
+   "icons": [],
+   "draw_next": 2,
+   "img": "cards/special/plus2.webp"
+  },
+  {
+   "id": "s-train-2",
+   "kind": "special",
+   "name": "Interdiction : Train / transports publics",
+   "icons": [
+    "train"
+   ],
+   "img": "cards/special/train.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-autoroute-2",
+   "kind": "special",
+   "name": "Interdiction : Autoroute A16",
+   "icons": [
+    "autoroute"
+   ],
+   "img": "cards/special/autoroute.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-frontiere-2",
+   "kind": "special",
+   "name": "Interdiction : Frontière",
+   "icons": [
+    "frontiere"
+   ],
+   "img": "cards/special/frontiere.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-eau-2",
+   "kind": "special",
+   "name": "Interdiction : Eau & rivières",
+   "icons": [
+    "eau"
+   ],
+   "img": "cards/special/eau.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-agriculture-2",
+   "kind": "special",
+   "name": "Interdiction : Agriculture",
+   "icons": [
+    "agriculture"
+   ],
+   "img": "cards/special/agriculture.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-nature-2",
+   "kind": "special",
+   "name": "Interdiction : Nature",
+   "icons": [
+    "nature"
+   ],
+   "img": "cards/special/nature.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-industrie-2",
+   "kind": "special",
+   "name": "Interdiction : Industrie",
+   "icons": [
+    "industrie"
+   ],
+   "img": "cards/special/industrie.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-horlogerie-2",
+   "kind": "special",
+   "name": "Interdiction : Horlogerie",
+   "icons": [
+    "horlogerie"
+   ],
+   "img": "cards/special/horlogerie.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-energie-2",
+   "kind": "special",
+   "name": "Interdiction : Énergie",
+   "icons": [
+    "energie"
+   ],
+   "img": "cards/special/energie.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-sante-2",
+   "kind": "special",
+   "name": "Interdiction : Santé & hôpital",
+   "icons": [
+    "sante"
+   ],
+   "img": "cards/special/sante.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-patrimoine-2",
+   "kind": "special",
+   "name": "Interdiction : Patrimoine & musées",
+   "icons": [
+    "patrimoine"
+   ],
+   "img": "cards/special/patrimoine.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-chateau-2",
+   "kind": "special",
+   "name": "Interdiction : Château",
+   "icons": [
+    "chateau"
+   ],
+   "img": "cards/special/chateau.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-chateau-3",
+   "kind": "special",
+   "name": "Interdiction : Château",
+   "icons": [
+    "chateau"
+   ],
+   "img": "cards/special/chateau.webp",
+   "legacy": true
+  },
+  {
+   "id": "s-sport-2",
+   "kind": "special",
+   "name": "Interdiction : Sport",
+   "icons": [
+    "sport"
+   ],
+   "img": "cards/special/sport.webp",
+   "legacy": true
+  },
+  {
    "id": "s-hiver-2",
    "kind": "special",
    "name": "Interdiction : Hiver & neige",
    "icons": [
     "hiver"
    ],
-   "img": "cards/special/hiver.webp"
+   "img": "cards/special/hiver.webp",
+   "legacy": true
   }
  ]
 }

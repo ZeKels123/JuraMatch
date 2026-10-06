@@ -9,6 +9,8 @@ export type Card = {
   habitants?: number
   icons: string[]
   chef_lieu?: boolean
+  draw_next?: number
+  legacy?: boolean
   description?: string
   img: string
 }
@@ -18,6 +20,7 @@ export const CARDS: Record<string, Card> = Object.fromEntries(
   (data.cards as Card[]).map((c) => [c.id, c]),
 )
 
+export const isPlus2 = (c?: Card | null) => !!c && c.kind === 'special' && c.icons.length === 0
 export const iconLabel = (id: string) => ICONS.find((i) => i.id === id)?.label ?? id
 export const iconImg = (id: string) => `cards/icons/${id}.webp`
 export const BACKS = ['cards/backs/back-1.webp', 'cards/backs/back-2.webp', 'cards/backs/back-3.webp', 'cards/backs/back-4.webp']

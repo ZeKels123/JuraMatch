@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { api, sessionStore, subscribeRoom, type GameState, type Session } from './api'
-import { BACKS, CARDS, iconImg, iconLabel, matchReasons } from './cards'
+import { BACKS, CARDS, iconImg, iconLabel, isPlus2, matchReasons } from './cards'
 import { RulesModal } from './Rules'
 import { CardZoom } from './CardZoom'
 import { describeEvent } from './log'
@@ -459,12 +459,13 @@ function Game({ state, token, act, onLeave, onRules }: {
 
         <div className="pile">
           {special ? (
-            <button className="card-btn" onClick={() => setZoom(special.id)} aria-label={`Interdiction active : ${iconLabel(special.icons[0])}`}>
+            <button className="card-btn" onClick={() => setZoom(special.id)} aria-label={isPlus2(special) ? 'Carte +2 sur la pile spéciale' : `Interdiction active : ${iconLabel(special.icons[0])}`}>
               <img key={special.id} className="card-img card-special drop-in" src={special.img} alt={special.name} />
             </button>
           ) : <span className="slot slot-special">Aucune interdiction</span>}
           <span className="pile-label">
-            {special ? <>Interdiction active<small>{iconLabel(special.icons[0])}</small></> : <>Spéciales<small>pile vide</small></>}
+            {special && !isPlus2(special) ? <>Interdiction active<small>{iconLabel(special.icons[0])}</small></>
+              : <>Spéciales<small>{special ? 'aucune interdiction' : 'pile vide'}</small></>}
           </span>
         </div>
       </section>
@@ -486,7 +487,7 @@ function Game({ state, token, act, onLeave, onRules }: {
         )}
         {penalized && (
           <p className="notice notice-chef">
-            {CARDS[lastEv.c ?? '']?.name ?? 'Un chef-lieu'} a été posé : tu as pioché {lastEv.n} carte{(lastEv.n ?? 0) > 1 ? 's' : ''}.
+            {isPlus2(CARDS[lastEv.c ?? '']) ? 'Une carte +2' : CARDS[lastEv.c ?? '']?.name ?? 'Un chef-lieu'} t’oblige à piocher : tu as reçu {lastEv.n} carte{(lastEv.n ?? 0) > 1 ? 's' : ''}.
           </p>
         )}
         {notice && <p className="notice">{notice}</p>}
@@ -512,7 +513,9 @@ function Game({ state, token, act, onLeave, onRules }: {
               </div>
             )}
             <p>
-              {sel.kind === 'special'
+              {isPlus2(sel)
+                ? <>Le joueur suivant pioche 2 cartes. Elle recouvre l’Interdiction active, qui ne compte plus.</>
+                : sel.kind === 'special'
                 ? <>Tant qu’elle est sur la pile spéciale, plus personne ne peut poser une commune avec le symbole <strong>{iconLabel(sel.icons[0])}</strong>.</>
                 : selReasons.blockedBy
                   ? <>Bloquée : le symbole <strong>{iconLabel(selReasons.blockedBy)}</strong> est interdit.</>

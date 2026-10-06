@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { CARDS, iconImg, iconLabel } from './cards'
+import { CARDS, iconImg, iconLabel, isPlus2 } from './cards'
 
 export function CardZoom({ id, onClose }: { id: string; onClose: () => void }) {
   const c = CARDS[id]
@@ -24,6 +24,11 @@ export function CardZoom({ id, onClose }: { id: string; onClose: () => void }) {
               {c.chef_lieu && <p className="chef-note">Chef-lieu : quand cette carte est posée, le joueur suivant pioche 3 cartes.</p>}
               <p>{c.description}</p>
             </>
+          ) : isPlus2(c) ? (
+            <p>
+              Carte +2. Quand elle est posée sur la pile spéciale, le joueur suivant pioche 2 cartes. Elle recouvre
+              l’Interdiction active, qui ne compte donc plus.
+            </p>
           ) : (
             <p>
               Carte Interdiction. Tant qu’elle est au sommet de la pile spéciale, aucune commune portant le symbole
