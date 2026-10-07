@@ -1,5 +1,5 @@
 import type { LogEvent } from './api'
-import { CARDS, iconLabel, isPlus2 } from './cards'
+import { CARDS, iconLabel, isPlus2, isQuestion } from './cards'
 
 export function describeEvent(e: LogEvent): string {
   const card = e.c ? CARDS[e.c] : null
@@ -19,7 +19,13 @@ export function describeEvent(e: LogEvent): string {
     case 'empty': return `${e.p} passe : plus aucune carte à piocher.`
     case 'leave': return `${e.p} a quitté la partie.`
     case 'win': return `${e.p} a posé sa dernière carte et gagne !`
-    case 'penalty': return `${isPlus2(card) ? '+2' : card?.name ?? 'Chef-lieu'} : ${e.p} pioche ${e.n} carte${(e.n ?? 0) > 1 ? 's' : ''}.`
+    case 'penalty':
+      if (isQuestion(card)) return e.by
+        ? `${e.by} choisit ${e.p} : ${e.p} pioche ${e.n} carte${(e.n ?? 0) > 1 ? 's' : ''}.`
+        : `Mauvaise réponse : ${e.p} pioche ${e.n} carte${(e.n ?? 0) > 1 ? 's' : ''}.`
+      return `${isPlus2(card) ? '+2' : card?.name ?? 'Chef-lieu'} : ${e.p} pioche ${e.n} carte${(e.n ?? 0) > 1 ? 's' : ''}.`
+    case 'question': return `${e.p} pose une question à ${e.q}.`
+    case 'answer': return e.ok ? `${e.p} répond juste : ${e.a}.` : `${e.p} répond ${e.g}, mais c’était ${e.a}.`
     case 'lobby': return 'Retour au salon.'
     default: return ''
   }

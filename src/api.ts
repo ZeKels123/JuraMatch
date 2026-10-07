@@ -12,8 +12,13 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 export type Player = { id: string; name: string; seat: number; count: number; active: boolean }
 
 export type LogEvent = {
-  k: 'create' | 'join' | 'start' | 'play' | 'draw' | 'keep' | 'reshuffle' | 'empty' | 'leave' | 'win' | 'lobby' | 'penalty'
+  k: 'create' | 'join' | 'start' | 'play' | 'draw' | 'keep' | 'reshuffle' | 'empty' | 'leave' | 'win' | 'lobby' | 'penalty' | 'question' | 'answer'
   p?: string
+  q?: string
+  ok?: boolean
+  a?: string
+  g?: string
+  by?: string
   c?: string
   n?: number
   left?: number
@@ -40,6 +45,17 @@ export type GameState = {
   me: { id: string; name: string; seat: number; hand: string[]; active: boolean }
   drawn_card: string | null
   playable: string[]
+  question: Question | null
+}
+
+export type Question = {
+  by: string
+  by_name: string
+  target: string
+  target_name: string
+  text: string
+  choices: string[]
+  stage: 'answer' | 'pick'
 }
 
 export type Session = { code: string; token: string }
@@ -58,6 +74,11 @@ export const api = {
   play: (token: string, card: string) => call<void>('jm_play_card', { p_token: token, p_card: card }),
   draw: (token: string) => call<{ card: string | null; playable: boolean }>('jm_draw_card', { p_token: token }),
   pass: (token: string) => call<void>('jm_pass', { p_token: token }),
+  playQuestion: (token: string, card: string, target: string) =>
+    call<void>('jm_play_question', { p_token: token, p_card: card, p_target: target }),
+  answerQuestion: (token: string, choice: number) =>
+    call<{ correct: boolean; answer: string }>('jm_answer_question', { p_token: token, p_choice: choice }),
+  questionPick: (token: string, victim: string) => call<void>('jm_question_pick', { p_token: token, p_victim: victim }),
   leave: (token: string) => call<void>('jm_leave_room', { p_token: token }),
   backToLobby: (token: string) => call<void>('jm_back_to_lobby', { p_token: token }),
 }

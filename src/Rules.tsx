@@ -13,7 +13,7 @@ export function RulesModal({ onClose }: { onClose: () => void }) {
         <h2 id="rules-title">Règles de JuraMatch</h2>
 
         <h3>Matériel</h3>
-        <p>74 cartes : 51 communes jurassiennes (district, altitude, habitants et de 1 à 5 symboles) et 23 cartes spéciales : 14 Interdictions (une par symbole) et 9 cartes +2.</p>
+        <p>80 cartes : 51 communes jurassiennes (district, altitude, habitants et de 1 à 5 symboles) et 29 cartes spéciales : 14 Interdictions (une par symbole), 9 cartes +2 et 6 cartes Question.</p>
 
         <h3>Mise en place</h3>
         <p>De 2 à 4 joueurs, chacun reçoit 8 cartes ; à 5 ou 6 joueurs, 6 cartes. La première carte de la pioche est retournée pour former la défausse — si c’est une carte spéciale, elle repart au milieu du paquet. Le plus jeune commence, puis on tourne dans l’ordre des places.</p>
@@ -30,6 +30,9 @@ export function RulesModal({ onClose }: { onClose: () => void }) {
 
         <h3>Cartes +2</h3>
         <p>Une carte +2 se pose sur la pile spéciale : le joueur suivant pioche 2 cartes, puis joue son tour normalement. Comme toute carte spéciale, elle recouvre l’Interdiction active.</p>
+
+        <h3>Cartes Question</h3>
+        <p>Pose une carte Question sur la pile spéciale et désigne un joueur. Il reçoit une question sur une commune jurassienne, avec 3 réponses possibles. S’il répond juste, il choisit qui pioche 2 cartes ; s’il se trompe, il pioche lui-même 2 cartes. Ensuite, le jeu reprend avec le joueur qui suit celui qui a posé la question.</p>
 
         <h3>Chefs-lieux (+3)</h3>
         <p>Delémont, Porrentruy, Saignelégier et Moutier sont des chefs-lieux. Quand l’une de ces cartes est posée, le joueur suivant pioche 3 cartes, puis joue son tour normalement.</p>

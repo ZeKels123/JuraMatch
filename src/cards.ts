@@ -11,6 +11,7 @@ export type Card = {
   chef_lieu?: boolean
   draw_next?: number
   legacy?: boolean
+  effect?: 'interdiction' | 'plus2' | 'question'
   description?: string
   img: string
 }
@@ -20,7 +21,10 @@ export const CARDS: Record<string, Card> = Object.fromEntries(
   (data.cards as Card[]).map((c) => [c.id, c]),
 )
 
-export const isPlus2 = (c?: Card | null) => !!c && c.kind === 'special' && c.icons.length === 0
+export const isPlus2 = (c?: Card | null) => !!c && c.effect === 'plus2'
+export const isQuestion = (c?: Card | null) => !!c && c.effect === 'question'
+/** Carte spéciale qui n'interdit aucun symbole (+2, Question) */
+export const isNeutralSpecial = (c?: Card | null) => !!c && c.kind === 'special' && c.icons.length === 0
 export const iconLabel = (id: string) => ICONS.find((i) => i.id === id)?.label ?? id
 export const iconImg = (id: string) => `cards/icons/${id}.webp`
 export const BACKS = ['cards/backs/back-1.webp', 'cards/backs/back-2.webp', 'cards/backs/back-3.webp', 'cards/backs/back-4.webp']

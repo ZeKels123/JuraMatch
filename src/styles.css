@@ -437,3 +437,38 @@ h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.1; ma
 }
 .chef-note { background: #fde8e8; color: var(--red-deep); border-radius: 8px; padding: .35rem .6rem; font-weight: 700; font-size: .92rem; }
 .notice-chef { background: var(--red); color: #fff; font-weight: 700; }
+
+/* ---------- Cartes Question ---------- */
+.qbox {
+  width: min(560px, 100%);
+  background: var(--pasture);
+  border-radius: 20px;
+  padding: clamp(18px, 4vw, 30px);
+  display: grid;
+  gap: .9rem;
+  justify-items: center;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,.3);
+  animation: lift .25s cubic-bezier(.2, .9, .3, 1.2);
+}
+.qbox p { margin: 0; }
+.qbox-card { width: 84px; aspect-ratio: var(--card-ratio); border-radius: 8px; transform: rotate(-5deg); }
+.qbox h2 { font-size: 1.9rem; }
+.q-who { font-weight: 700; color: var(--red); }
+.q-text { font-size: clamp(1.4rem, 4vw, 1.9rem) !important; max-width: 26ch; }
+.q-choices { display: grid; gap: .55rem; width: 100%; }
+.q-choice {
+  appearance: none; cursor: pointer;
+  background: #fff; border: 3px solid #fff; border-radius: 14px;
+  padding: .8rem 1rem; text-align: center;
+  font-family: var(--display); font-weight: 700; font-size: 1.35rem; color: var(--fir);
+  box-shadow: 0 3px 0 var(--line);
+  transition: border-color .15s, transform .1s;
+}
+.q-choice:hover:not(:disabled) { border-color: var(--gold); transform: translateY(-1px); }
+.q-choice:disabled { cursor: default; }
+.q-chosen { border-color: var(--fir); }
+.qbox-players { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+.qbox-players small { font-family: var(--body); font-weight: 400; opacity: .85; }
+.q-good { color: #127a3c; }
+.notice-good { background: #1f8f4e; color: #fff; font-weight: 700; }

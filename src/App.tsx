@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { api, sessionStore, subscribeRoom, type GameState, type Session } from './api'
-import { BACKS, CARDS, iconImg, iconLabel, isPlus2, matchReasons } from './cards'
+import { BACKS, CARDS, iconImg, iconLabel, isNeutralSpecial, isPlus2, isQuestion, matchReasons } from './cards'
+import { QuestionPanel, TargetPicker } from './Question'
 import { RulesModal } from './Rules'
 import { CardZoom } from './CardZoom'
 import { describeEvent } from './log'
@@ -329,6 +330,7 @@ function Game({ state, token, act, onLeave, onRules }: {
   const [notice, setNotice] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const [logOpen, setLogOpen] = useState(false)
+  const [askWith, setAskWith] = useState<string | null>(null)
   const handRef = useRef<HTMLElement>(null)
   const [handH, setHandH] = useState(180)
 
@@ -342,7 +344,7 @@ function Game({ state, token, act, onLeave, onRules }: {
   }, [])
 
   const me = state.me
-  const myTurn = state.status === 'playing' && state.current_seat === me.seat && me.active
+  const myTurn = state.status === 'playing' && state.current_seat === me.seat && me.active && !state.question
   const current = state.players.find((p) => p.seat === state.current_seat)
   const isHost = state.host_id === me.id
   const playable = new Set(state.playable)
@@ -365,6 +367,7 @@ function Game({ state, token, act, onLeave, onRules }: {
   useEffect(() => { if (!notice) return; const t = window.setTimeout(() => setNotice(null), 4500); return () => window.clearTimeout(t) }, [notice])
 
   const play = async (id: string) => {
+    if (isQuestion(CARDS[id])) { setAskWith(id); return }
     setBusy(true)
     await act(() => api.play(token, id))
     setSelected(null)
@@ -380,6 +383,25 @@ function Game({ state, token, act, onLeave, onRules }: {
     }
     setBusy(false)
   }
+  const ask = async (target: string) => {
+    if (!askWith) return
+    setBusy(true)
+    await act(() => api.playQuestion(token, askWith, target))
+    setAskWith(null)
+    setSelected(null)
+    setBusy(false)
+  }
+  const answer = async (choice: number) => {
+    setBusy(true)
+    const r = await act(() => api.answerQuestion(token, choice))
+    setBusy(false)
+    return r
+  }
+  const pickVictim = async (id: string) => {
+    setBusy(true)
+    await act(() => api.questionPick(token, id))
+    setBusy(false)
+  }
   const keep = async () => {
     setBusy(true)
     await act(() => api.pass(token))
@@ -391,12 +413,16 @@ function Game({ state, token, act, onLeave, onRules }: {
   const sel = selected ? CARDS[selected] : null
   const selReasons = selected ? matchReasons(selected, state.top_commune, state.forbidden) : null
 
-  const lastEv = state.log[state.log.length - 1]
-  const penalized = myTurn && state.phase === 'play' && lastEv?.k === 'penalty' && lastEv.p === me.name
+  const recent = state.log.slice(-3)
+  const myPenalty = [...recent].reverse().find((e) => e.k === 'penalty' && e.p === me.name && state.log.indexOf(e) >= state.log.length - 2)
+  const lastAnswer = !state.question ? [...recent].reverse().find((e) => e.k === 'answer') : undefined
 
   let status: string
   if (state.status === 'finished') status = 'Partie terminée'
   else if (!me.active) status = 'Tu as quitté cette partie.'
+  else if (state.question) status = state.question.target === me.id
+    ? 'Une question pour toi !'
+    : `${state.question.target_name} répond à une question…`
   else if (myTurn && state.phase === 'drawn') status = 'Ta carte piochée peut être posée tout de suite. Pose-la ou garde-la.'
   else if (myTurn) status = playable.size > 0
     ? 'À toi ! Pose une carte en surbrillance ou pioche.'
@@ -459,12 +485,12 @@ function Game({ state, token, act, onLeave, onRules }: {
 
         <div className="pile">
           {special ? (
-            <button className="card-btn" onClick={() => setZoom(special.id)} aria-label={isPlus2(special) ? 'Carte +2 sur la pile spéciale' : `Interdiction active : ${iconLabel(special.icons[0])}`}>
+            <button className="card-btn" onClick={() => setZoom(special.id)} aria-label={isNeutralSpecial(special) ? `${special.name} sur la pile spéciale` : `Interdiction active : ${iconLabel(special.icons[0])}`}>
               <img key={special.id} className="card-img card-special drop-in" src={special.img} alt={special.name} />
             </button>
           ) : <span className="slot slot-special">Aucune interdiction</span>}
           <span className="pile-label">
-            {special && !isPlus2(special) ? <>Interdiction active<small>{iconLabel(special.icons[0])}</small></>
+            {special && !isNeutralSpecial(special) ? <>Interdiction active<small>{iconLabel(special.icons[0])}</small></>
               : <>Spéciales<small>{special ? 'aucune interdiction' : 'pile vide'}</small></>}
           </span>
         </div>
@@ -485,9 +511,19 @@ function Game({ state, token, act, onLeave, onRules }: {
             <button className="btn" disabled={busy} onClick={draw}>{deckEmpty ? 'Passer (pioche vide)' : 'Piocher'}</button>
           </div>
         )}
-        {penalized && (
+        {lastAnswer && (
+          <p className={`notice ${lastAnswer.ok ? 'notice-good' : 'notice-chef'}`}>
+            {lastAnswer.ok
+              ? <>{lastAnswer.p === me.name ? 'Tu as' : `${lastAnswer.p} a`} bien répondu : {lastAnswer.a}.</>
+              : <>{lastAnswer.p === me.name ? 'Tu as répondu' : `${lastAnswer.p} a répondu`} {lastAnswer.g}, mais la bonne réponse était {lastAnswer.a}.</>}
+          </p>
+        )}
+        {myPenalty && (
           <p className="notice notice-chef">
-            {isPlus2(CARDS[lastEv.c ?? '']) ? 'Une carte +2' : CARDS[lastEv.c ?? '']?.name ?? 'Un chef-lieu'} t’oblige à piocher : tu as reçu {lastEv.n} carte{(lastEv.n ?? 0) > 1 ? 's' : ''}.
+            {isQuestion(CARDS[myPenalty.c ?? ''])
+              ? (myPenalty.by ? `${myPenalty.by} t’a choisi` : 'Mauvaise réponse')
+              : isPlus2(CARDS[myPenalty.c ?? '']) ? 'Une carte +2 t’oblige à piocher' : `${CARDS[myPenalty.c ?? '']?.name ?? 'Un chef-lieu'} t’oblige à piocher`}
+            {' '}: tu as reçu {myPenalty.n} carte{(myPenalty.n ?? 0) > 1 ? 's' : ''}.
           </p>
         )}
         {notice && <p className="notice">{notice}</p>}
@@ -513,7 +549,9 @@ function Game({ state, token, act, onLeave, onRules }: {
               </div>
             )}
             <p>
-              {isPlus2(sel)
+              {isQuestion(sel)
+                ? <>Pose-la et désigne un joueur : s’il répond juste à la question, il choisit qui pioche 2 cartes, sinon il pioche 2 cartes.</>
+                : isPlus2(sel)
                 ? <>Le joueur suivant pioche 2 cartes. Elle recouvre l’Interdiction active, qui ne compte plus.</>
                 : sel.kind === 'special'
                 ? <>Tant qu’elle est sur la pile spéciale, plus personne ne peut poser une commune avec le symbole <strong>{iconLabel(sel.icons[0])}</strong>.</>
@@ -536,7 +574,9 @@ function Game({ state, token, act, onLeave, onRules }: {
             )}
             <div className="focus-actions">
               {playable.has(sel.id) && (
-                <button className="btn btn-primary" disabled={busy} onClick={() => play(sel.id)}>Poser {sel.name}</button>
+                <button className="btn btn-primary" disabled={busy} onClick={() => play(sel.id)}>
+                  {isQuestion(sel) ? 'Poser et choisir un joueur' : `Poser ${sel.name}`}
+                </button>
               )}
               {myTurn && state.phase === 'drawn' && sel.id === state.drawn_card && (
                 <button className="btn" disabled={busy} onClick={keep}>Garder et finir mon tour</button>
@@ -585,6 +625,17 @@ function Game({ state, token, act, onLeave, onRules }: {
         <EndScreen state={state} isHost={isHost} onAgain={() => act(() => api.backToLobby(token))} onLeave={onLeave} />
       )}
       {zoom && <CardZoom id={zoom} onClose={() => setZoom(null)} />}
+      {askWith && (
+        <TargetPicker
+          players={state.players.filter((p) => p.active && p.id !== me.id)}
+          busy={busy}
+          onPick={ask}
+          onCancel={() => setAskWith(null)}
+        />
+      )}
+      {state.question && state.status === 'playing' && (
+        <QuestionPanel key={state.question.text + state.question.target} state={state} busy={busy} onAnswer={answer} onPickVictim={pickVictim} />
+      )}
     </main>
   )
 }

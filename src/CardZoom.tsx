@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { CARDS, iconImg, iconLabel, isPlus2 } from './cards'
+import { CARDS, iconImg, iconLabel, isPlus2, isQuestion } from './cards'
 
 export function CardZoom({ id, onClose }: { id: string; onClose: () => void }) {
   const c = CARDS[id]
@@ -24,6 +24,11 @@ export function CardZoom({ id, onClose }: { id: string; onClose: () => void }) {
               {c.chef_lieu && <p className="chef-note">Chef-lieu : quand cette carte est posée, le joueur suivant pioche 3 cartes.</p>}
               <p>{c.description}</p>
             </>
+          ) : isQuestion(c) ? (
+            <p>
+              Carte Question. Pose-la et désigne un joueur : il reçoit une question sur une commune avec 3 réponses.
+              S’il répond juste, il choisit qui pioche 2 cartes ; s’il se trompe, c’est lui qui pioche 2 cartes.
+            </p>
           ) : isPlus2(c) ? (
             <p>
               Carte +2. Quand elle est posée sur la pile spéciale, le joueur suivant pioche 2 cartes. Elle recouvre

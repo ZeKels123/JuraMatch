@@ -836,7 +836,8 @@
    "icons": [
     "train"
    ],
-   "img": "cards/special/train.webp"
+   "img": "cards/special/train.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-autoroute-1",
@@ -845,7 +846,8 @@
    "icons": [
     "autoroute"
    ],
-   "img": "cards/special/autoroute.webp"
+   "img": "cards/special/autoroute.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-frontiere-1",
@@ -854,7 +856,8 @@
    "icons": [
     "frontiere"
    ],
-   "img": "cards/special/frontiere.webp"
+   "img": "cards/special/frontiere.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-eau-1",
@@ -863,7 +866,8 @@
    "icons": [
     "eau"
    ],
-   "img": "cards/special/eau.webp"
+   "img": "cards/special/eau.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-agriculture-1",
@@ -872,7 +876,8 @@
    "icons": [
     "agriculture"
    ],
-   "img": "cards/special/agriculture.webp"
+   "img": "cards/special/agriculture.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-nature-1",
@@ -881,7 +886,8 @@
    "icons": [
     "nature"
    ],
-   "img": "cards/special/nature.webp"
+   "img": "cards/special/nature.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-industrie-1",
@@ -890,7 +896,8 @@
    "icons": [
     "industrie"
    ],
-   "img": "cards/special/industrie.webp"
+   "img": "cards/special/industrie.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-horlogerie-1",
@@ -899,7 +906,8 @@
    "icons": [
     "horlogerie"
    ],
-   "img": "cards/special/horlogerie.webp"
+   "img": "cards/special/horlogerie.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-energie-1",
@@ -908,7 +916,8 @@
    "icons": [
     "energie"
    ],
-   "img": "cards/special/energie.webp"
+   "img": "cards/special/energie.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-sante-1",
@@ -917,7 +926,8 @@
    "icons": [
     "sante"
    ],
-   "img": "cards/special/sante.webp"
+   "img": "cards/special/sante.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-patrimoine-1",
@@ -926,7 +936,8 @@
    "icons": [
     "patrimoine"
    ],
-   "img": "cards/special/patrimoine.webp"
+   "img": "cards/special/patrimoine.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-chateau-1",
@@ -935,7 +946,8 @@
    "icons": [
     "chateau"
    ],
-   "img": "cards/special/chateau.webp"
+   "img": "cards/special/chateau.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-sport-1",
@@ -944,7 +956,8 @@
    "icons": [
     "sport"
    ],
-   "img": "cards/special/sport.webp"
+   "img": "cards/special/sport.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-hiver-1",
@@ -953,7 +966,8 @@
    "icons": [
     "hiver"
    ],
-   "img": "cards/special/hiver.webp"
+   "img": "cards/special/hiver.webp",
+   "effect": "interdiction"
   },
   {
    "id": "s-plus2-1",
@@ -961,7 +975,8 @@
    "name": "Carte +2",
    "icons": [],
    "draw_next": 2,
-   "img": "cards/special/plus2.webp"
+   "img": "cards/special/plus2.webp",
+   "effect": "plus2"
   },
   {
    "id": "s-plus2-2",
@@ -969,7 +984,8 @@
    "name": "Carte +2",
    "icons": [],
    "draw_next": 2,
-   "img": "cards/special/plus2.webp"
+   "img": "cards/special/plus2.webp",
+   "effect": "plus2"
   },
   {
    "id": "s-plus2-3",
@@ -977,7 +993,8 @@
    "name": "Carte +2",
    "icons": [],
    "draw_next": 2,
-   "img": "cards/special/plus2.webp"
+   "img": "cards/special/plus2.webp",
+   "effect": "plus2"
   },
   {
    "id": "s-plus2-4",
@@ -985,7 +1002,8 @@
    "name": "Carte +2",
    "icons": [],
    "draw_next": 2,
-   "img": "cards/special/plus2.webp"
+   "img": "cards/special/plus2.webp",
+   "effect": "plus2"
   },
   {
    "id": "s-plus2-5",
@@ -993,7 +1011,8 @@
    "name": "Carte +2",
    "icons": [],
    "draw_next": 2,
-   "img": "cards/special/plus2.webp"
+   "img": "cards/special/plus2.webp",
+   "effect": "plus2"
   },
   {
    "id": "s-plus2-6",
@@ -1001,7 +1020,8 @@
    "name": "Carte +2",
    "icons": [],
    "draw_next": 2,
-   "img": "cards/special/plus2.webp"
+   "img": "cards/special/plus2.webp",
+   "effect": "plus2"
   },
   {
    "id": "s-plus2-7",
@@ -1009,7 +1029,8 @@
    "name": "Carte +2",
    "icons": [],
    "draw_next": 2,
-   "img": "cards/special/plus2.webp"
+   "img": "cards/special/plus2.webp",
+   "effect": "plus2"
   },
   {
    "id": "s-plus2-8",
@@ -1017,7 +1038,8 @@
    "name": "Carte +2",
    "icons": [],
    "draw_next": 2,
-   "img": "cards/special/plus2.webp"
+   "img": "cards/special/plus2.webp",
+   "effect": "plus2"
   },
   {
    "id": "s-plus2-9",
@@ -1025,7 +1047,8 @@
    "name": "Carte +2",
    "icons": [],
    "draw_next": 2,
-   "img": "cards/special/plus2.webp"
+   "img": "cards/special/plus2.webp",
+   "effect": "plus2"
   },
   {
    "id": "s-train-2",
@@ -1035,7 +1058,8 @@
     "train"
    ],
    "img": "cards/special/train.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-autoroute-2",
@@ -1045,7 +1069,8 @@
     "autoroute"
    ],
    "img": "cards/special/autoroute.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-frontiere-2",
@@ -1055,7 +1080,8 @@
     "frontiere"
    ],
    "img": "cards/special/frontiere.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-eau-2",
@@ -1065,7 +1091,8 @@
     "eau"
    ],
    "img": "cards/special/eau.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-agriculture-2",
@@ -1075,7 +1102,8 @@
     "agriculture"
    ],
    "img": "cards/special/agriculture.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-nature-2",
@@ -1085,7 +1113,8 @@
     "nature"
    ],
    "img": "cards/special/nature.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-industrie-2",
@@ -1095,7 +1124,8 @@
     "industrie"
    ],
    "img": "cards/special/industrie.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-horlogerie-2",
@@ -1105,7 +1135,8 @@
     "horlogerie"
    ],
    "img": "cards/special/horlogerie.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-energie-2",
@@ -1115,7 +1146,8 @@
     "energie"
    ],
    "img": "cards/special/energie.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-sante-2",
@@ -1125,7 +1157,8 @@
     "sante"
    ],
    "img": "cards/special/sante.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-patrimoine-2",
@@ -1135,7 +1168,8 @@
     "patrimoine"
    ],
    "img": "cards/special/patrimoine.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-chateau-2",
@@ -1145,7 +1179,8 @@
     "chateau"
    ],
    "img": "cards/special/chateau.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-chateau-3",
@@ -1155,7 +1190,8 @@
     "chateau"
    ],
    "img": "cards/special/chateau.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-sport-2",
@@ -1165,7 +1201,8 @@
     "sport"
    ],
    "img": "cards/special/sport.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
   },
   {
    "id": "s-hiver-2",
@@ -1175,7 +1212,56 @@
     "hiver"
    ],
    "img": "cards/special/hiver.webp",
-   "legacy": true
+   "legacy": true,
+   "effect": "interdiction"
+  },
+  {
+   "id": "s-question-1",
+   "kind": "special",
+   "name": "Carte Question",
+   "icons": [],
+   "effect": "question",
+   "img": "cards/special/question.webp"
+  },
+  {
+   "id": "s-question-2",
+   "kind": "special",
+   "name": "Carte Question",
+   "icons": [],
+   "effect": "question",
+   "img": "cards/special/question.webp"
+  },
+  {
+   "id": "s-question-3",
+   "kind": "special",
+   "name": "Carte Question",
+   "icons": [],
+   "effect": "question",
+   "img": "cards/special/question.webp"
+  },
+  {
+   "id": "s-question-4",
+   "kind": "special",
+   "name": "Carte Question",
+   "icons": [],
+   "effect": "question",
+   "img": "cards/special/question.webp"
+  },
+  {
+   "id": "s-question-5",
+   "kind": "special",
+   "name": "Carte Question",
+   "icons": [],
+   "effect": "question",
+   "img": "cards/special/question.webp"
+  },
+  {
+   "id": "s-question-6",
+   "kind": "special",
+   "name": "Carte Question",
+   "icons": [],
+   "effect": "question",
+   "img": "cards/special/question.webp"
   }
  ]
 }
