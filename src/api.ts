@@ -66,21 +66,27 @@ async function call<T>(fn: string, args: Record<string, unknown>): Promise<T> {
   return data as T
 }
 
+export type ActResponse<T> = { result: T; state: GameState }
+const act = <T,>(token: string, action: string, args: Record<string, unknown> = {}) =>
+  call<ActResponse<T>>('jm_act', { p_token: token, p_action: action, ...args })
+
+/** Partie publique de l'état, envoyée par le temps réel à chaque coup */
+export type PublicState = Omit<GameState, 'me' | 'drawn_card' | 'playable'>
+
 export const api = {
   createRoom: (name: string) => call<Session>('jm_create_room', { p_name: name }),
   joinRoom: (code: string, name: string) => call<Session>('jm_join_room', { p_code: code, p_name: name }),
   state: (token: string) => call<GameState>('jm_get_state', { p_token: token }),
-  start: (token: string, first: string | null) => call<void>('jm_start_game', { p_token: token, p_first: first }),
-  play: (token: string, card: string) => call<void>('jm_play_card', { p_token: token, p_card: card }),
-  draw: (token: string) => call<{ card: string | null; playable: boolean }>('jm_draw_card', { p_token: token }),
-  pass: (token: string) => call<void>('jm_pass', { p_token: token }),
-  playQuestion: (token: string, card: string, target: string) =>
-    call<void>('jm_play_question', { p_token: token, p_card: card, p_target: target }),
-  answerQuestion: (token: string, choice: number) =>
-    call<{ correct: boolean; answer: string }>('jm_answer_question', { p_token: token, p_choice: choice }),
-  questionPick: (token: string, victim: string) => call<void>('jm_question_pick', { p_token: token, p_victim: victim }),
+  // Toutes les actions passent par jm_act : l'action ET le nouvel état en un seul aller-retour réseau
+  start: (token: string, first: string | null) => act<null>(token, 'start', { p_target: first }),
+  play: (token: string, card: string) => act<null>(token, 'play', { p_card: card }),
+  draw: (token: string) => act<{ card: string | null; playable: boolean }>(token, 'draw'),
+  pass: (token: string) => act<null>(token, 'pass'),
+  playQuestion: (token: string, card: string, target: string) => act<null>(token, 'question', { p_card: card, p_target: target }),
+  answerQuestion: (token: string, choice: number) => act<{ correct: boolean; answer: string }>(token, 'answer', { p_choice: choice }),
+  questionPick: (token: string, victim: string) => act<null>(token, 'pick', { p_target: victim }),
+  backToLobby: (token: string) => act<null>(token, 'lobby'),
   leave: (token: string) => call<void>('jm_leave_room', { p_token: token }),
-  backToLobby: (token: string) => call<void>('jm_back_to_lobby', { p_token: token }),
 }
 
 // La session active est propre à l'onglet (sessionStorage) : on peut ainsi ouvrir
@@ -118,10 +124,13 @@ export const sessionStore = {
 }
 
 /** S'abonne aux notifications temps réel d'une partie. Retourne la fonction de désabonnement. */
-export function subscribeRoom(code: string, onUpdate: () => void) {
+export function subscribeRoom(code: string, onUpdate: (pub: PublicState | null) => void) {
   const channel = supabase
     .channel('juramatch:' + code)
-    .on('broadcast', { event: 'update' }, () => onUpdate())
+    .on('broadcast', { event: 'update' }, (msg) => {
+      const p = msg.payload as PublicState | undefined
+      onUpdate(p && typeof p.version === 'number' && p.code ? p : null)
+    })
     .subscribe()
   return () => { supabase.removeChannel(channel) }
 }

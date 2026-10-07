@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { api, sessionStore, subscribeRoom, type GameState, type Session } from './api'
+import { api, sessionStore, subscribeRoom, type ActResponse, type GameState, type PublicState, type Session } from './api'
 import { BACKS, CARDS, iconImg, iconLabel, isNeutralSpecial, isPlus2, isQuestion, matchReasons } from './cards'
 import { QuestionPanel, TargetPicker } from './Question'
 import { RulesModal } from './Rules'
@@ -7,6 +7,22 @@ import { CardZoom } from './CardZoom'
 import { describeEvent } from './log'
 
 const NAME_KEY = 'juramatch:name'
+let preloaded = false
+function preloadCards() {
+  if (preloaded) return
+  preloaded = true
+  const urls = [...new Set(Object.values(CARDS).map((c) => c.img)), ...BACKS]
+  let i = 0
+  const next = () => {
+    // 4 images à la fois, sans gêner le jeu
+    for (let k = 0; k < 4 && i < urls.length; k++, i++) { const img = new Image(); img.decoding = 'async'; img.src = urls[i] }
+    if (i < urls.length) window.setTimeout(next, 150)
+  }
+  next()
+}
+
+/** États fusionnés depuis le temps réel (main pas encore relue) */
+const partial = new WeakSet<GameState>()
 
 function readName() {
   try { return localStorage.getItem(NAME_KEY) ?? '' } catch { return '' }
@@ -23,13 +39,27 @@ export default function App() {
   const loading = useRef(false)
   const pending = useRef(false)
 
+  // N'accepte un état que s'il est plus récent : évite les retours en arrière et les re-rendus inutiles
+  // (« partial » = état fusionné depuis le temps réel, dont la main n'est pas encore relue)
+  const optimistic = useRef(false)
+  const versionRef = useRef(0)
+  const apply = useCallback((s: GameState) => {
+    const force = optimistic.current
+    optimistic.current = false
+    setState((prev) => {
+      if (!force && prev && !partial.has(prev) && prev.version >= s.version && prev.status === s.status) return prev
+      versionRef.current = s.version
+      return s
+    })
+  }, [])
+
   const refresh = useCallback(async () => {
     if (!session) return
     if (loading.current) { pending.current = true; return }
     loading.current = true
     try {
       const s = await api.state(session.token)
-      setState((prev) => (prev && prev.version > s.version ? prev : s))
+      apply(s)
     } catch (e) {
       const msg = (e as Error).message
       if (msg.includes('introuvable')) {
@@ -41,18 +71,44 @@ export default function App() {
       loading.current = false
       if (pending.current) { pending.current = false; void refresh() }
     }
-  }, [session])
+  }, [session, apply])
 
-  // Temps réel + filet de sécurité par interrogation régulière
+  // Temps réel : l'état public arrive directement dans la notification et s'affiche tout de suite ;
+  // la main du joueur est relue ensuite (en arrière-plan, regroupé). Interrogation lente en secours.
+  const refreshTimer = useRef<number | undefined>(undefined)
+  const scheduleRefresh = useCallback(() => {
+    window.clearTimeout(refreshTimer.current)
+    refreshTimer.current = window.setTimeout(() => void refresh(), 120)
+  }, [refresh])
+
+  const onBroadcast = useCallback((pub: PublicState | null) => {
+    if (!pub) { scheduleRefresh(); return }
+    if (pub.version <= versionRef.current) return // déjà à jour (souvent : notre propre coup)
+    versionRef.current = pub.version
+    scheduleRefresh()
+    setState((prev) => {
+      if (!prev) return prev
+      if (pub.status !== prev.status) return prev // changement d'écran : on attend l'état complet
+      const myTurn = pub.status === 'playing' && pub.current_seat === prev.me.seat && !pub.question && pub.phase === 'play'
+      // Cartes jouables calculées localement en attendant la réponse du serveur
+      const playable = myTurn
+        ? prev.me.hand.filter((h) => matchReasons(h, pub.top_commune, pub.forbidden).ok)
+        : []
+      const merged = { ...prev, ...pub, playable, drawn_card: myTurn ? null : prev.drawn_card }
+      partial.add(merged)
+      return merged
+    })
+  }, [scheduleRefresh])
+
   useEffect(() => {
     if (!session) return
     void refresh()
-    const unsub = subscribeRoom(session.code, () => void refresh())
-    const timer = window.setInterval(() => { if (!document.hidden) void refresh() }, 4000)
+    const unsub = subscribeRoom(session.code, onBroadcast)
+    const timer = window.setInterval(() => { if (!document.hidden) void refresh() }, 8000)
     const onVis = () => { if (!document.hidden) void refresh() }
     document.addEventListener('visibilitychange', onVis)
     return () => { unsub(); window.clearInterval(timer); document.removeEventListener('visibilitychange', onVis) }
-  }, [session, refresh])
+  }, [session, refresh, onBroadcast])
 
   const enter = (s: Session) => {
     sessionStore.set(s)
@@ -69,19 +125,25 @@ export default function App() {
     setState(null)
   }
 
-  /** Exécute une action de jeu puis recharge l'état ; les erreurs s'affichent dans un bandeau. */
-  const act = useCallback(async <T,>(fn: () => Promise<T>): Promise<T | undefined> => {
+  /**
+   * Exécute une action : l'écran peut être mis à jour tout de suite (optimiste),
+   * puis le serveur renvoie le vrai nouvel état dans la même réponse.
+   */
+  const act = useCallback(async <T,>(fn: () => Promise<ActResponse<T>>, guess?: (s: GameState) => GameState): Promise<T | undefined> => {
     setError(null)
+    if (guess) { optimistic.current = true; setState((prev) => (prev ? guess(prev) : prev)) }
     try {
       const out = await fn()
-      await refresh()
-      return out
+      optimistic.current = true // l'état renvoyé par l'action fait foi
+      apply(out.state)
+      return out.result
     } catch (e) {
       setError((e as Error).message)
+      optimistic.current = true
       await refresh()
       return undefined
     }
-  }, [refresh])
+  }, [refresh, apply])
 
   let screen
   if (!session) {
@@ -221,7 +283,7 @@ function Home({ onEnter, onRules }: { onEnter: (s: Session) => void; onRules: ()
 /* Salon d'attente                                                     */
 /* ------------------------------------------------------------------ */
 
-type Act = <T>(fn: () => Promise<T>) => Promise<T | undefined>
+type Act = <T>(fn: () => Promise<ActResponse<T>>, guess?: (s: GameState) => GameState) => Promise<T | undefined>
 
 function Lobby({ state, token, act, onLeave, onRules }: {
   state: GameState; token: string; act: Act; onLeave: () => void; onRules: () => void
@@ -351,6 +413,9 @@ function Game({ state, token, act, onLeave, onRules }: {
   const others = state.players.filter((p) => p.id !== me.id)
   const deckEmpty = state.deck_count === 0
 
+  // Précharge toutes les images de cartes en arrière-plan : une carte posée s'affiche sans attente
+  useEffect(() => { preloadCards() }, [])
+
   // Onglet du navigateur : signale quand c'est ton tour
   useEffect(() => {
     document.title = myTurn ? '● À toi de jouer — JuraMatch' : 'JuraMatch'
@@ -369,8 +434,18 @@ function Game({ state, token, act, onLeave, onRules }: {
   const play = async (id: string) => {
     if (isQuestion(CARDS[id])) { setAskWith(id); return }
     setBusy(true)
-    await act(() => api.play(token, id))
     setSelected(null)
+    const c = CARDS[id]
+    // Affichage immédiat : la carte quitte la main et arrive sur sa pile
+    await act(() => api.play(token, id), (s) => ({
+      ...s,
+      me: { ...s.me, hand: s.me.hand.filter((h) => h !== id) },
+      top_commune: c?.kind === 'commune' ? id : s.top_commune,
+      top_special: c?.kind === 'special' ? id : s.top_special,
+      forbidden: c?.kind === 'special' ? (c.icons[0] ?? null) : s.forbidden,
+      playable: [],
+      drawn_card: null,
+    }))
     setBusy(false)
   }
   const draw = async () => {
@@ -606,7 +681,7 @@ function Game({ state, token, act, onLeave, onRules }: {
                 aria-pressed={isSel}
                 aria-label={`${c?.name}${can ? ', jouable' : ''}`}
               >
-                <img className="card-img" src={c?.img} alt="" loading="lazy" />
+                <img className="card-img" src={c?.img} alt="" decoding="async" />
               </button>
             )
           })}
